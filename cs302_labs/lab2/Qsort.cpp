@@ -1,5 +1,7 @@
 
 // include header files needed
+#include <iostream>
+
 using namespace std;
 
 class data {

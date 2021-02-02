@@ -22,7 +22,7 @@ using namespace std;
 struct fruit_t {
 
   //--------Data declarations--------------
-  	char fruit_name[MAX_LENGTH]; 						// name of fruit
+  	char fruit_name[MAX_LENGTH];					// name of fruit
   	float quantity;							// in lbs
  	float price; 							// price tag of the fruit
 	float new_quantity;
