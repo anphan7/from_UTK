@@ -1,7 +1,7 @@
 
 // include header files needed
 #include <iostream>
-
+#include <vecto>
 using namespace std;
 
 class data {
