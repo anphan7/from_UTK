@@ -1,7 +1,8 @@
 
 // include header files needed
 #include <iostream>
-#include <vecto>
+#include <vector>
+#include <cstring>
 using namespace std;
 
 class data {
