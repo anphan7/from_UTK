@@ -76,29 +76,25 @@ ostream &operator<<(ostream &out, const data &r)
 template <typename Tdata>
 void quicksort(vector<Tdata> &A, int left, int right)
 {
-    if (left < right)
-    {
+     if (left < right){
         srand(time(NULL));
         int random = left + rand() % (right - left);
-        swap(A[random], A[right]); 
 
         Tdata pivot = A[right]; 
-        int i = (left-1);
+        int i = (left - 1);
        
-        for (int j = left; j <= right-1 ; j++) 
+        for (int j = left; j <= right ; j++) 
         {
             if (A[j] <= pivot) {
                 i++; 
                 swap(A[i], A[j]);
             }
         }
-        swap(A[i+1], A[right]);
+        swap(A[random], A[right]); 
 
-        quicksort(A, left, i);
-        quicksort (A, i +2, right);
-    }
-         //printlist(A.begin(), A.end());
-
+        quicksort(A, left, random -1);
+        quicksort (A, random +1, right);
+     }
 }
 
 /*

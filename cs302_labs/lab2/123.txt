@@ -18,7 +18,6 @@ public:
     // add operator< using lastname, firstname, phone number
 
     friend bool operator<(const data &f1, const data &f2);
-    friend bool operator<=(const data &f1, const data &f2);
 
     friend istream &operator>>(istream &, data &);
     friend ostream &operator<<(ostream &, const data &);
@@ -43,21 +42,6 @@ bool operator<(const data &f1, const data &f2)
         return (f1.phonenum < f2.phonenum);
     }
 }
-bool operator<=(const data &f1, const data &f2)
-{ //overload operator <
-    if (f1.lastname != f2.lastname)
-    {
-        return (f1.lastname <= f2.lastname);
-    }
-    else if (f1.lastname == f2.lastname && f1.firstname != f2.firstname)
-    {
-        return (f1.firstname <=  f2.firstname);
-    }
-    else if (f1.lastname == f2.lastname && f1.firstname == f2.firstname)
-    {
-        return (f1.phonenum <= f2.phonenum);
-    }
-}
 istream &operator>>(istream &in, data &r)
 {
     // write this to read data object data
@@ -74,31 +58,41 @@ ostream &operator<<(ostream &out, const data &r)
 }
 
 template <typename Tdata>
-void quicksort(vector<Tdata> &A, int left, int right)
+int partition(vector<Tdata> &A, int left, int right)
 {
-    if (left < right)
-    {
-        srand(time(NULL));
-        int random = left + rand() % (right - left);
-        swap(A[random], A[right]); 
+    // sort: order left, middle and right elements  
+    if (left < right) {
 
-        Tdata pivot = A[right]; 
-        int i = (left-1);
-       
-        for (int j = left; j <= right-1 ; j++) 
-        {
-            if (A[j] <= pivot) {
-                i++; 
-                swap(A[i], A[j]);
-            }
-        }
-        swap(A[i+1], A[right]);
+    srand(time(NULL));
+    int random = left + rand() % (right - left);
+    swap (A[random], A[right]);
 
-        quicksort(A, left, i);
-        quicksort (A, i +2, right);
-    }
-         //printlist(A.begin(), A.end());
-
+    if (right-left+1 <= 3) 
+    return middle;  // select pivot: median-of-three  
+    
+    int pindex = middle;  
+    Tdata pivot = A[pindex];  // partition A: {<=}, {pivot}, {=>}   
+    swap(A[pindex], A[right-1]);  
+    int i = left;  
+    int j = right-1;  
+     while (1) {   
+        while (A[++i] < pivot) { }    
+        while (pivot < A[--j]) { }    
+        if (i>=j) break;    
+        swap(A[i], A[j]);  } 
+         pindex = i;  
+         swap(A[pindex], 
+         A[right-1]);  
+         
+    }     
+}
+template <typename Tdata>
+void quicksort(std::vector<Tdata> &A, int left, int right) {  
+  if (left < right) 
+  {    int pindex = partition(A, left, right);    
+  quicksort(A, left, pindex-1);    
+  quicksort(A, pindex+1, right);  
+  }
 }
 
 /*

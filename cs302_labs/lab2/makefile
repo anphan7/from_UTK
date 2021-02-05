@@ -1,12 +1,14 @@
-
+#Makefile for searches
+#Compiler:
 CC = g++
 CFLAGS = -g -Wall -std=c++11
 BIN = Qsort
 
-all: $(BIN)
+all:Qsort $(BIN)
 
-.cpp: 
-	$(CC) $(CFLAGS) -o $* $<
+Qsort.cpp: 
+	$(CC)  Qsort.cpp$(CFLAGS) -o $* $<
+
 
 clean:
 	@rm -f $(BIN)
