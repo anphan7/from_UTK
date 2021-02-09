@@ -1,95 +1,56 @@
-// C++ implementation QuickSort 
+// C++ implementation QuickSort
 // using Lomuto's partition Scheme.
 #include <cstdlib>
 #include <iostream>
-#include <typeinfo>       // operator typeid
-
+#include <typeinfo> // operator typeid
+#include <vector>
+#include <algorithm>
 using namespace std;
- 
-// This function takes last element
-// as pivot, places
-// the pivot element at its correct
-// position in sorted array, and 
-// places all smaller (smaller than pivot)
-// to left of pivot and all greater 
-// elements to right of pivot
-int partition(int arr[], int low, int high)
+bool myfunction (int i,int j) { return (i<j); }
+
+int main(int argc, char *argv[])
 {
-    // pivot
-    int pivot = arr[high]; 
-   
-    // Index of smaller element
-    int i = (low - 1); 
- 
-    for (int j = low; j <= high - 1; j++) 
+    if (argc != 3)
     {
-        // If current element is smaller
-        // than or equal to pivot
-        if (arr[j] <= pivot) {
- 
-            // increment index of 
-            // smaller element
-            i++; 
-            swap(arr[i], arr[j]);
+        cout << "usage: " << argv[0] << " A|B|C"
+             << " k < numbers.txt\n";
+        return 0;
+    }
+    char mode = argv[1][0];
+    int k = atoi(argv[2]);
+
+    vector<int> A;
+    int din;
+    while (cin >> din)
+
+        A.push_back(din);
+    int N = (int)A.size();
+    if (mode == 'A')
+    {
+        // use std::partial_sort()
+        partial_sort(A.begin(), A.begin() + N, A.end(), myfunction);
+    }
+    else if (mode == 'B')
+    {
+        // use std::make_heap(), loop w/std::pop_heap() and std::reverse()
+        make_heap(A.begin(), A.end());
+        for (int i = 0; i < A.size(); i++){   
+            pop_heap (A.begin(), A.end() - i );
+        }
+        reverse(A.begin(), A.end());
+
+
+    }
+    else if (mode == 'C')
+    {
+        // modify the code from mode B work like mode A
+        make_heap(A.begin(), A.end());
+        for (int i = 0; i < A.size(); i++){   
+            pop_heap (A.begin(), A.end() - i );
         }
     }
-    swap(arr[i + 1], arr[high]);
-    return (i + 1);
-}
- 
-// Generates Random Pivot, swaps pivot with
-// end element and calls the partition function
-int partition_r(int arr[], int low, int high)
-{
-    // Generate a random number in between
-    // low .. high
-    srand(time(NULL));
-    int random = low + rand() % (high - low);
- 
-    // Swap A[random] with A[high]
-    swap(arr[random], arr[high]);
-    //cout << random << " --" << low << " --" << high << endl;
-    cout << typeid (random).name() << endl;
-    return partition(arr, low, high);
-
-}
- 
-/* The main function that implements
-QuickSort
-arr[] --> Array to be sorted,
-low --> Starting index,
-high --> Ending index */
-void quickSort(int arr[], int low, int high)
-{
-    if (low < high) {
- 
-        /* pi is partitioning index,
-        arr[p] is now
-        at right place */
-        int pi = partition_r(arr, low, high);
-        cout << typeid (pi).name() << endl;
-        // Separately sort elements before
-        // partition and after partition
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
- 
-/* Function to print an array */
-void printArray(int arr[], int size)
-{
-    int i;
-    for (i = 0; i < size; i++)
-        cout << arr[i] << endl;
-}
- 
-// Driver Code
-int main()
-{
-    int arr[] = { 10, 7, 8, 9, 1, 5 };
-    int n = sizeof(arr) / sizeof(arr[0]);
-    quickSort(arr, 0, n - 1);
-    cout << "Sorted array: \n";
-    printArray(arr, n);
-    return 0;
+    for (int i = 0; i < k; i++)
+        cout << A[i] << " *\n";
+    for (int i = k; i < N; i++)
+        cout << A[i] << "\n";
 }
