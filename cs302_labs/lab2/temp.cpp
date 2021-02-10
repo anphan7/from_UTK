@@ -52,76 +52,104 @@ istream &operator>>(istream &in, data &r)
 ostream &operator<<(ostream &out, const data &r)
 {
     // write this to write data object data
-    out << r.lastname << ", " << r.firstname << left;
-    out << setw(20) << right << r.phonenum << setw(15) << right;
+    out << r.lastname << ", "  << r.firstname << left;
+    out <<  right << setw(25) << r.phonenum;
     return out;
 }
 
 template <typename Tdata>
 void quicksort(vector<Tdata> &A, int left, int right)
 {
+    if ((right - left) == 1)
+    {
+        if (A[right] < A[left])
+        {
+            swap(A[right], A[left]);
+        }
+    }
     if (left < right)
     {
         srand(time(NULL));
-        int random = left + rand() % (right - left);
-        swap(A[random], A[right]); 
+        int random = rand() % (right - left);
+        int pindex = left + random;
+        Tdata pivot = A[pindex];
 
-        Tdata pivot = A[right]; 
-        int i = (left-1);
-       
-        for (int j = left; j <= right-1 ; j++) 
+        swap(A[pindex], A[right]);
+        int i = left - 1;
+        int j = right;
+
+        while (1)
         {
-            if (A[j] < pivot) {
-                i++; 
-                swap(A[i], A[j]);
-            }
+            while (A[++i] < pivot && i != right){}
+            while (pivot < A[--j] && (j > left)){}
+            if (i >= j || (i > right) || (j < left)) break;
+            swap(A[i], A[j]);
         }
-        swap(A[i+1], A[right]);
-
-        quicksort(A, left, i);
-        quicksort (A, i +2, right);
+        pindex = i;
+        swap(A[pindex], A[right]);
+        quicksort(A, left, pindex - 1);
+        quicksort(A, pindex + 1, right);
     }
-         //printlist(A.begin(), A.end());
-
 }
 
-
 template <typename Tdata>
-void quickselect(vector <Tdata> &A, int left, int k, int right)
+void quickselect(vector<Tdata> &A, int left, int k, int right)
 {
-  int i;
-  if (left < right)
+    left = 0;
+    right = (int)A.size() - 1;
+
+    while (1)
     {
         srand(time(NULL));
-        int random = left + rand() % (right - left);
-        swap(A[random], A[right]); 
-
-        Tdata pivot = A[right]; 
-        i = (left-1);
-       
-        for (int j = left; j <= right-1 ; j++) 
+        int random = rand() % (right - left);
+        int pindex = left + random;
+        Tdata pivot = A[pindex];
+        if ((right - left) == 1)
         {
-            if (A[j] < pivot) {
-                i++; 
-                swap(A[i], A[j]);
+            if (A[right] < A[left])
+            {
+                swap(A[right], A[left]);
+                return;
             }
         }
-        swap(A[i+1], A[right]);
-
-        quicksort(A, left, i);
-        quicksort (A, i +2, right);
-    }
-
-        left = 0;
-        right = (int)A.size -1 ;
-        while(1)
+        if (left + 1  < right)
         {
-            int pindex = i + 1;
 
-            if (pindex == k) return;
-            if (k < pindex) right = pindex - 1;
-            else left = pindex + 1;
+            swap(A[pindex], A[right]);
+            int i = left - 1;
+            int j = right;
+
+            while (1)
+            {
+                do{ i++;} while (A[i] < pivot);
+                do{ j--;} while (pivot < A[j]);
+                if (i >= j) break;
+
+                //while (A[++i] < pivot && i != right){}
+                //while (pivot < A[--j] && (j > left)){}
+                //if (i >= j || (i > right) || (j < left)) break;
+                swap(A[i], A[j]);
+            }
+            /*
+            if (right - left  == 2)
+            {
+                if (A[left] < A[right]) { swap(A[left], A[right]); }
+            }
+            */
+            pindex = i;
+            swap(A[pindex], A[right]);
+            if (pindex  == k )
+                return;
+            if (k < pindex )
+            {
+                right = pindex - 1;
+            }
+             else //if (k > pindex)
+            {
+                left = pindex + 1;
+            }
         }
+    }
 }
 
 template <typename Tdata>
@@ -130,8 +158,7 @@ void printlist(Tdata begin, Tdata end) // second parameter will be iterator or s
     int i = 0;
     for (; begin != end; ++begin)
     {
-        cout << *begin << " " << i;
-        cout << endl;
+        cout << *begin << endl;
         i++;
     }
 }
@@ -141,13 +168,14 @@ int main(int argc, char *argv[])
 
     ifstream inFile;
     ofstream outFile;
-    inFile.open(argv[2]); // open file.txt
+    //inFile.open(argv[2]); // open file.txt
+    inFile.open("list1.txt"); // open file.txt
+
     string line;
     vector<data> A;
     data din;
-    int arg2 = atoi (argv[2]);
-    int arg3 = atoi (argv[3]);
-
+    string mode;
+    mode = argv[1];
     // perform command-line error checking
     /*
     if (argc != 3)
@@ -155,37 +183,56 @@ int main(int argc, char *argv[])
         cout << "usage: Qsort -stl | -rpivot [k0 k1] file.txt" << endl;
     }
     */
-
     while (inFile >> din)
     {
         A.push_back(din); // vector size here is 11 (11 line of file)
     }
     inFile.close(); //close file.txt
 
-    if (strcmp(argv[1], "-stl") == 0)
+    if (mode == "-stl")
     {
         std::sort(A.begin(), A.end());
-        printlist(A.begin(), A.end());
     }
-    int N ;
-    int k0;
-    int k1;
-    if (strcmp(argv[1], "-rpivot") == 0)
+
+    else if (mode == "-rpivot")
     {
-        N = (int)A.size();
-        k0 = 0;
-        k1 = N - 1;
+        int N = (int)A.size();
+        int k0 = 0;
+        int k1 = N - 1;
 
-        
-        // if specified, update k0, k1 and apply quickselect
-        // to ensure that A[0:k0-1] <= A[k0:k1] <= A[k1+1:N-1]
+        if (argc == 3)
+        {
+            
+            quicksort(A, k0, k1);
+        }
 
-        quicksort(A, k0, k1);
-        printlist(A.begin(), A.end());
+        if (argc == 5)
+        {   
+            k0 = atoi(argv[2]);
+            k1 = atoi(argv[3]);
+
+            cout << k0 << " " << k1  << " " << N  << " " << A.size() << endl;
+            if (k0 < 0)
+            {
+                k0 = 0;
+            }
+            if (k1 >= N)
+            {
+                k1 = N - 1;
+            }
+
+            cout << " check this " << endl;
+            cout << k0 << " " << k1  << " " << A.size() << endl;
+            quickselect(A, 0, k0, N - 1);
+            quickselect(A, k0, k1, N - 1);
+            quicksort(A, k0, k1);
+
+            // if specified, update k0, k1 and apply quickselect
+            // to ensure that A[0:k0-1] <= A[k0:k1] <= A[k1+1:N-1]
+        }
+
     }
-    else if( (strcmp(argv[1], "-rpivot") == 0) || arg2 == k0 || arg3 == N-1) 
-    {
-        cout << " bigtch" << endl;
-    }
 
+    printlist(A.begin(), A.end());
+    return 0;
 }

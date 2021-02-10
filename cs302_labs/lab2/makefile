@@ -6,8 +6,8 @@ BIN = Qsort
 
 all:Qsort $(BIN)
 
-Qsort.cpp: 
-	$(CC)  Qsort.cpp$(CFLAGS) -o $* $<
+Qsort: Qsort.o 
+	$(CC)  Qsort.cpp -o Qsort
 
 
 clean:

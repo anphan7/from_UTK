@@ -6,7 +6,6 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-bool myfunction (int i,int j) { return (i<j); }
 
 int main(int argc, char *argv[])
 {
@@ -28,14 +27,14 @@ int main(int argc, char *argv[])
     if (mode == 'A')
     {
         // use std::partial_sort()
-        partial_sort(A.begin(), A.begin() + N, A.end(), myfunction);
+        partial_sort(A.begin(), A.begin() + k, A.end());
     }
     else if (mode == 'B')
     {
         // use std::make_heap(), loop w/std::pop_heap() and std::reverse()
         make_heap(A.begin(), A.end());
-        for (int i = 0; i < A.size(); i++){   
-            pop_heap (A.begin(), A.end() - i );
+        for (int i = 0; i < k; i++){   
+            pop_heap (A.begin() , A.end() - i );
         }
         reverse(A.begin(), A.end());
 
@@ -44,10 +43,9 @@ int main(int argc, char *argv[])
     else if (mode == 'C')
     {
         // modify the code from mode B work like mode A
-        make_heap(A.begin(), A.end());
-        for (int i = 0; i < A.size(); i++){   
-            pop_heap (A.begin(), A.end() - i );
-        }
+        make_heap(A.begin(), A.end(), greater<int>());
+            pop_heap (A.begin() , A.end(), greater<int>()  );
+        
     }
     for (int i = 0; i < k; i++)
         cout << A[i] << " *\n";
