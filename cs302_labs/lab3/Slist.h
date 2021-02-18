@@ -3,7 +3,6 @@
 
 // include header file(s) needed
 
-#include "Slist.h"
 #include <iostream>
 #include <cstring>
 #include <algorithm>
@@ -29,9 +28,10 @@ private:
       next = NULL;
     }
     node(const T &key) { data = key; next = NULL; } // add node(const T &key) { write this }
-    bool operator<(const T &rhs) const // add overloaded operator< code
+    bool operator<(const node &rhs) const // add overloaded operator< code
     {
-      return data < rhs.data;
+      if (data < rhs.data) return true;
+      else return false;
     }
     T data;
     node *next;
@@ -45,7 +45,7 @@ private:
       {
         ptr = _ptr;
       }
-      bool operator<(const node &rhs) const { return *ptr < *rhs.ptr; }
+      bool operator<(const sptr &rhs) const { return *ptr < *rhs.ptr; }
       operator node *() const { return ptr; }
 
     private:
@@ -123,26 +123,55 @@ void slist<T>::sort(const string &algname)
   // determine number of list elements
   int count_size = 0;
   node *current = head; // current = p;
-  int i;
   iterator it (begin());
   for (; it != end(); ++it)
   {
     count_size++;
   }
-  cout << count_size << endl; // number count on the list which is 352 on repeat1.txt
+ //cout << count_size << endl; // number count on the list which is 352 on repeat1.txt
 
   // set up smart pointer array called Ap
-  vector<sptr> Ap (count_size);  // Allocate Ap pointers of count . Ap.size() here 352
-  for (i = 0; current -> next != NULL; current = current -> next , i++)                 // Initialize the individual smart pointers to point to the list node
-  {
-    Ap[i] = current -> next;
-  }
+  vector<sptr> Ap (count_size);  // Allocate Ap pointers of count . Ap.size() here 351
+ 
   if (algname.compare("-quicksort") == 0)
   {
-    std::sort (Ap.begin(), Ap.end() );
+    for (int i = 0; current -> next != NULL;  i++)                 // Initialize the individual smart pointers to point to the list node
+      {
+        Ap[i] = current -> next;
+        current = current -> next ;
+      }
+      std::sort (Ap.begin(), Ap.end() );
+      current = head;
+
+      for (int i = 0; i < count_size; i++)
+      {
+        current -> next = Ap[i];
+        //current = Ap[i];
+        current = current -> next;
+      }        
+
+      current -> next = NULL;
+      tail = current;
   }
-  // if quicksort, apply std::sort(...)
-  // if mergesort, apply std::stable_sort(...)
+  else if (algname.compare("-mergesort") == 0)
+  {
+    for (int i = 0; current -> next != NULL;  i++)                 // Initialize the individual smart pointers to point to the list node
+      {
+        Ap[i] = current -> next;
+        current = current -> next;
+      }
+      std::stable_sort (Ap.begin(), Ap.end() );
+      current = head;
+      for (int i = 0; i < count_size; i++)
+      {
+        current -> next = Ap[i];
+        current = Ap[i];
+
+      }
+      current -> next = NULL;
+      tail = current;
+  }
+  
   // if qsort_r3, apply qsort_r3(...)
   // use sorted Ap array to relink list
 }
