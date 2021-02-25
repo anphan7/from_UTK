@@ -27,11 +27,17 @@ private:
       data = T();
       next = NULL;
     }
-    node(const T &key) { data = key; next = NULL; } // add node(const T &key) { write this }
+    node(const T &key)
+    {
+      data = key;
+      next = NULL;
+    }                                     // add node(const T &key) { write this }
     bool operator<(const node &rhs) const // add overloaded operator< code
     {
-      if (data < rhs.data) return true;
-      else return false;
+      if (data < rhs.data)
+        return true;
+      else
+        return false;
     }
     T data;
     node *next;
@@ -40,16 +46,16 @@ private:
 private:
   class sptr
   {
-    public:
-      sptr(node *_ptr = NULL)
-      {
-        ptr = _ptr;
-      }
-      bool operator<(const sptr &rhs) const { return *ptr < *rhs.ptr; }
-      operator node *() const { return ptr; }
+  public:
+    sptr(node *_ptr = NULL)
+    {
+      ptr = _ptr;
+    }
+    bool operator<(const sptr &rhs) const { return *ptr < *rhs.ptr; }
+    operator node *() const { return ptr; }
 
-    private:
-      node *ptr;
+  private:
+    node *ptr;
   }; // add class sptr { write this for node data }
 
 public:
@@ -122,58 +128,42 @@ void slist<T>::sort(const string &algname)
 {
   // determine number of list elements
   int count_size = 0;
-  node *current = head; // current = p;
-  iterator it (begin());
-  for (; it != end(); ++it)
+  node *current = head; // tracking the pointer
+  iterator it(begin());
+  for (; it != end(); ++it) // loop through the size of the list
   {
-    count_size++;
+    count_size++; // size of the list
   }
- //cout << count_size << endl; // number count on the list which is 352 on repeat1.txt
 
   // set up smart pointer array called Ap
-  vector<sptr> Ap (count_size);  // Allocate Ap pointers of count . Ap.size() here 351
+  vector<sptr> Ap(count_size); // Allocate Ap pointers of count . Ap.size() here 351
+
+  for (int i = 0; current->next != NULL; i++) // Initialize the individual smart pointers to point to the list node
+  {
+    Ap[i] = current->next;
+    current = current->next;              // moving on to the next node
+  }
+  if (algname.compare("-quicksort") == 0)     // option with quicksort
+  {
+    std::sort(Ap.begin(), Ap.end());          // std::sort()
+  }
+  else if (algname.compare("-mergesort") == 0)  // option with mergesort
+  {
+    std::stable_sort(Ap.begin(), Ap.end());     // std::stable_sort()
+  }
  
-  if (algname.compare("-quicksort") == 0)
+  //---------Relink the node ----------------------
+  current = head;                             // start from head node
+
+  for (int i = 0; i < count_size; i++)        // relink each node start from 0
   {
-    for (int i = 0; current -> next != NULL;  i++)                 // Initialize the individual smart pointers to point to the list node
-      {
-        Ap[i] = current -> next;
-        current = current -> next ;
-      }
-      std::sort (Ap.begin(), Ap.end() );
-      current = head;
-
-      for (int i = 0; i < count_size; i++)
-      {
-        current -> next = Ap[i];
-        //current = Ap[i];
-        current = current -> next;
-      }        
-
-      current -> next = NULL;
-      tail = current;
+    current->next = Ap[i];          // connet from the vector to node
+    current = Ap[i];
   }
-  else if (algname.compare("-mergesort") == 0)
-  {
-    for (int i = 0; current -> next != NULL;  i++)                 // Initialize the individual smart pointers to point to the list node
-      {
-        Ap[i] = current -> next;
-        current = current -> next;
-      }
-      std::stable_sort (Ap.begin(), Ap.end() );
-      current = head;
-      for (int i = 0; i < count_size; i++)
-      {
-        current -> next = Ap[i];
-        current = Ap[i];
-
-      }
-      current -> next = NULL;
-      tail = current;
-  }
-  
-  // if qsort_r3, apply qsort_r3(...)
-  // use sorted Ap array to relink list
+  current->next = NULL;           // at the end of node, set it to NULL
+  tail = current;                 
 }
+
+// use sorted Ap array to relink list
 
 #endif // SLIST_H

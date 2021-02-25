@@ -28,13 +28,20 @@ public:
 		row = 0;
 		col = 0;
 	}
-	~PPM() {delete[] img;}
-
+	~PPM() 
+	{
+		if (img){
+			for (int i = 0; i < row ; i++){
+				delete[] img[i];
+			}
+			delete[] img;
+		}
+	}
 	void read(const string&);
 	void write(const string&);
 
 	RGB *operator[](int i) { return img[i]; } // take exactly 1 argument
-
+	
 	int get_Nrows() {return row; }
 	int get_Ncols() { return col; }
 

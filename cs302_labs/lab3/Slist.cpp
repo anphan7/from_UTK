@@ -1,14 +1,11 @@
 // include header file(s) needed
+/*
+    Name: AN PHAN
+    Class: CS 302
+    Description: In this lab you will continue sorting the multi-column data from Lab 2 which consisted of a firstname, a lastname, and a phone number. The main difference is that the data will now be stored in single linked list. In order to allow sorting by means of STL sorting algorithms (or any of the ones covered in class), you will embed a smart pointer subclass within the single linked list class and write the associated code for setting things up and applying the result.
 
+*/
 #include "Slist.h"
-#include <iostream>
-#include <cstring>
-#include <algorithm>
-#include <iomanip>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <iterator>
 using namespace std;
 
 // modify the data class and the associated input 
@@ -76,7 +73,10 @@ void printlist(Tdata begin, Tdata end) // function for printing the iretator
 int main(int argc, char *argv[]) {
   // copy command-line check from Qsort.cpp,
   // then modify to apply to this assignment
- 
+  if (argc != 3 )
+  {
+      cout << "usage: ./Slist -quicksort|-mergsort repeat1.txt" << endl;
+  }
   ifstream inFile;
   inFile.open(argv[2]); // open input file
 

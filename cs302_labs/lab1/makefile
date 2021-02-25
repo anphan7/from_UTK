@@ -3,7 +3,7 @@
 CC = g++
 
 #complier options
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g 
 
 BIN = ./bin/ 
 

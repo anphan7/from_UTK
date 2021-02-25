@@ -39,7 +39,6 @@ int main(int argc, char *argv[])
         nrgb_read = fin.gcount() / 3;
         if (nrgb_read == 0 && fin.eof())
             break;
-
         sprintf(text, "%07d ", npixels_read);
         fout << text;
 

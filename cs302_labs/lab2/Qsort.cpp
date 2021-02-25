@@ -102,7 +102,7 @@ void quicksort(vector<Tdata> &A, int left, int right)
         }
         pindex = i;                                         
         swap(A[pindex], A[right]);
-        quicksort(A, left, pindex - 1);                     
+        quicksort(A, left, pindex - 1);       
         quicksort(A, pindex + 1, right);
     }
 }

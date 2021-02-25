@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
         ifstream inFile;		// file name
 		int count = 0;			
         float total_price = 0;
-        inFile.open(argv[2]);                                       //open file
+        inFile.open("list1.txt");                                       //open file
 		int i = 0;
         while (true){                                     //read in the file is true
 	        fruit.push_back(fruit_t());						// push the variables to the vector
