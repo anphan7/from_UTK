@@ -27,7 +27,7 @@ void decode(...) {
 int main(int argc, char *argv[]) {
   PPM image;
 
-  //image.read(argv[1]);
+  image.read(argv[1]);
   image.write(argv[1]);
 
 /* 

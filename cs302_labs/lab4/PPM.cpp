@@ -6,10 +6,8 @@ using namespace std;
 
 void PPM::read(const string& nameFile) { 
   ifstream inFile;
-  inFile.open (nameFile.c_str(), ios::binary);
-  PPM p;
+  inFile.open (nameFile.c_str(), ios::binary | ios::in);
   string magic_ID;
-  int nrow, ncol;
   int max_value;  // read in the header of the ppm file which is P6
 
   if (!inFile.is_open())
@@ -18,25 +16,24 @@ void PPM::read(const string& nameFile) {
   }
   if (inFile.is_open())
   { 
-    inFile >> magic_ID >> ncol >> nrow >> max_value;
-    while (inFile.get() != '\n'){};
-    int npixels = nrow * ncol;
-    unsigned char buf[3*npixels];   
-    int count = 0 ;
-    while(inFile.read((char*) buf, 3*npixels)){
-      count++;
-    }
-    img = new RGB*[nrow];
+    inFile >> magic_ID >> cols >> row >> max_value;
 
-    for (int i = 0; i < nrow; i++)
+    while (inFile.get() != '\n'){};
+    int npixels = row * cols;
+    unsigned char buf[3*npixels];   
+    inFile.read((char*) buf, npixels * 3);
+    img = new RGB*[row];
+    int k =0;
+    for (int i = 0; i < row; i++)
     {
-      img[i] = new RGB[ncol];
-    
-      for (int j = 0; j < ncol; j++)
+      img[i] = new RGB[cols];
+
+      for (int j = 0; j < cols; j++)
       {
-        img[i][j].R = buf[i]; 
-        img[i][j].G = buf[i]; 
-        img[i][j].B = buf[i];
+        img[i][j].R = buf[k]; 
+        img[i][j].G = buf[k+1]; 
+        img[i][j].B = buf[k+2];
+        k+=3;
       }
     }
   }
@@ -46,26 +43,27 @@ void PPM::read(const string& nameFile) {
 void PPM::write(const string &nameFile ) 
 { 
   ofstream outFile;
-  string magic_ID;
-  int nrow, ncol;
-  int max_value;  // read in the header of the ppm file which is P6  inFile >> magic_ID >> ncol >> nrow >> max_value;
-
+  PPM p;
+  string magic_ID = "P6";
+  int max_value = 255;
   string new_Name = nameFile.substr(0, nameFile.find(".", 0));
-  outFile.open ((new_Name + "_wmsg.ppm").c_str());
+  outFile.open ((new_Name + "_wmsg.ppm").c_str(), ios::binary| ios::out);
   if (!outFile.is_open())
   {
     cout << new_Name << " can't open " << endl;
   }
   if (outFile.is_open())
   {  
-
-    cout << img.get_Nrows() << endl;
-    int npixels = ncol * nrow;
-    unsigned char buf[3*npixels]; 
-	outFile << "P6" << endl;
-    outFile << ncol << " " << nrow << endl;
+	  outFile << magic_ID << endl;
+    outFile << cols << " " << row << endl;
     outFile << max_value << endl;
-    outFile.write((char*) buf, 3*npixels);
+    for (int i = 0; i < row; i++)
+    {
+      for (int j = 0; j < cols; j++)
+      { 
+        outFile << img[i][j].R << img[i][j].G << img[i][j].B;
+      }
+    }
   }
   outFile.close();
 }

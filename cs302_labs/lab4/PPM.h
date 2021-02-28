@@ -25,8 +25,8 @@ class PPM
 public:
 	PPM()  // constructor
 	{ 
+		cols = 0;
 		row = 0;
-		col = 0;
 	}
 	~PPM() 
 	{
@@ -43,13 +43,12 @@ public:
 	RGB *operator[](int i) { return img[i]; } // take exactly 1 argument
 	
 	int get_Nrows() {return row; }
-	int get_Ncols() { return col; }
+	int get_Ncols() { return cols; }
 
 private:
 	//data members
 	RGB **img = NULL; // pointer to pointer
-	int row ;
-	int col;
+	int row, cols;
 };
 
 #endif
