@@ -24,7 +24,8 @@ void set_pixel_list(PPM &img, vector <pixel> &v  ) {
   {
     for (int j = 0; j < img.get_Ncols(); j++)
     {
-      if (i %2 == 0)
+      //set all even pixels
+      if (i %2 == 0) 
       {
         if (j %2 == 0)
         {
@@ -32,6 +33,7 @@ void set_pixel_list(PPM &img, vector <pixel> &v  ) {
           p.r= i;
           p.c = j;
           v.push_back(p);  }}}}}
+
 void encode(PPM &img, vector <pixel> &v) {
   int i = 0;
   int color_change = 3;
@@ -44,6 +46,9 @@ void encode(PPM &img, vector <pixel> &v) {
     for (int k_th = 0; k_th < 7; k_th++)
     {
       bit = c >> k_th;
+      //set the color = 1111 1110
+      // move char to k_th location (0,1,...6)
+      // encryted to 0000 000c
       if ((color_change % 3) == 0)
       {
         img[v[i].r][v[i].c].R &= 0xFE;
@@ -59,13 +64,16 @@ void encode(PPM &img, vector <pixel> &v) {
         img[v[i].r][v[i].c].B &= 0xFE;
         img[v[i].r][v[i].c].B |= bit & 0x1;
       }
-      color_change++;
-      i++;
+      color_change++; // swith color here
+      i++;  // move to different index
     }
   }
   for (int k_th = 0; k_th < 7; k_th++)
   {
     bit_ETX = ETX >> k_th;
+    //set the color = 1111 1110
+    // move ETX to k_th location (0,1,...6)
+    // encryted to 0000 000c + ETX
     if ((color_change % 3) == 0)
       {
         img[v[i].r][v[i].c].R &= 0xFE;
@@ -81,8 +89,8 @@ void encode(PPM &img, vector <pixel> &v) {
         img[v[i].r][v[i].c].B &= 0xFE;
         img[v[i].r][v[i].c].B |= bit_ETX & 0x1;
       }
-      color_change++;
-      i++;
+      color_change++; // swith color here
+      i++;  // move to different index
   }
 }
 
@@ -97,6 +105,8 @@ void decode(PPM &img, vector <pixel> &v) {
     {
       if ((color_change % 3) == 0)
       {
+        // get the encrypted bit from image
+        // move the first bit to the char
         c |= img[v[i].r][v[i].c].R & 0x1;
         c = c << 1;
       }
@@ -132,14 +142,9 @@ int main(int argc, char *argv[]) {
   mode = argv[1];
   vector <pixel> pi; //declare pixel_list
 
-/* 
-  parse command line arguments
-  if something not right,
-    print error message and exit
-*/
   image.read(argv[2]);
 
-  set_pixel_list(image, pi);
+  set_pixel_list(image, pi);  // set all even pixels
   
   if (argc != 3 || (mode != "-encode" && mode != "-decode"))
   {
@@ -149,7 +154,7 @@ int main(int argc, char *argv[]) {
 
   if (mode == "-encode") {
     encode(image, pi); 
-    image.write(argv[2]);
+    image.write(argv[2]); // write new file
   }
   if (mode == "-decode") 
     decode(image, pi);

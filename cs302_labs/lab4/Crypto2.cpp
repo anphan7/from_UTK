@@ -20,43 +20,38 @@ struct pixel {
 };
 
 void set_pixel_list(PPM &img, vector <pixel> &v, int seed  ) {
-    vector <int> histogram; //
-
-    int rows = img.get_Nrows();
-    int columns = img.get_Ncols();
-
+    vector <int> h; // histogram
     pixel p;
     int index;
+    unsigned int r1, r2, rand_of_24;
 
-    for (int i = 0; i < rows; i++)
+    for (int i = 0; i < img.get_Nrows(); i++)
     {
-        for (int j = 0; j < columns; j++)
+        for (int j = 0; j < img.get_Ncols(); j++)
         {
+            //extract four bits (b6..b3) from each color byte
             index |= img[i][j].R & 0x78;
             index = index << 4;
             index |= img[i][j].G & 0x78;
             index = index << 4;
             index |= img[i][j].B & 0x78;
-            histogram.push_back(index);
+            h.push_back(index);
 
             p.r = i;
             p.c = j;
             v.push_back(p);
-
         }
     }
-    rnumgen RNG (seed, histogram);
+    rnumgen RNG (seed, h);
 
-    unsigned int rand1, rand2, rand24;
-    for (int i = (int)v.size() - 1; i > 0; --i)
+    for (int i = v.size() - 1; i > 0; --i)
     {
-        rand1 = histogram[(rand() % (histogram.size() -1))];
-        rand2 = histogram[(rand() % (histogram.size() -1))];
-        rand24 = ((rand1 << 12 | rand2));
-        swap(v[i],v[rand24 % (i +1)]);
+        //random number across the image file
+        r1 = h[(rand() % (h.size() - 1))];
+        r2 = h[(rand() % (h.size() - 1))];
+        rand_of_24 = ((r1 << 12 | r2));
+        swap(v[i],v[rand_of_24 % (i +1)]);
     }
-
-
 }
 
 void encode(PPM &img, vector <pixel> &v) {
@@ -65,7 +60,6 @@ void encode(PPM &img, vector <pixel> &v) {
   char c;
   char bit;
   char bit_ETX;
-
   while(cin.get(c))
   {
     for (int k_th = 0; k_th < 7; k_th++)
@@ -159,12 +153,12 @@ int main(int argc, char *argv[]) {
     mode = argv[1];
     vector <pixel> pi; //declare pixel_list
     int key_number;    // key number for encode and decode
-    string seed = argv[argc - 2];
-    seed = seed.substr(6, seed1.length());
-    key_number = atoi(seed.c_str()); 
-    image.read(argv[argc - 1]);
+    string seed = argv[argc - 2]; // get the location in command line
+    seed = seed.substr(6, seed.length()); // parse the command line to eliminate the (-seed=)'s part
+    key_number = atoi(seed.c_str());  // convert to number
+    image.read(argv[argc - 1]);     // read the ppm file
     
-    if (argc != 4 mode != "-encode" && mode != "-decode")
+    if (argc != 4 || (mode != "-encode" && mode != "-decode"))
     {
         cout << "Usage: ./Crypto2 -encode|-decode -seed=key_number image_name.ppm" << endl;
         return 0;

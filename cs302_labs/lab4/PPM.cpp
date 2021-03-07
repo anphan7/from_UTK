@@ -14,30 +14,34 @@ void PPM::read(const string& nameFile) {
   {
     cout << nameFile << " can't open " << endl;
   }
-  /*
-  if (magic_ID != 'P6')
-  {
-    cout << "This is not a P6 format PPM image." << endl;
-    cout << " Please try a differnt file " << endl;
-  }
-  */
-  if (max_value > 255)
-  {
-    cout << "The max value of color exceed 255" << endl;
-  }
+  
+  
   if (inFile.is_open())
   { 
+    
     inFile >> magic_ID >> cols >> row >> max_value; 
-
+    if (magic_ID != "P6")
+    {
+      inFile.close();
+      cout << "This is not a P6 format PPM image." << endl;
+      cout << " Please try a differnt file " << endl;
+      exit(0);
+    }
+  
+    if (max_value != 255)
+    {
+      cout << "The max value of color not equal 255" << endl;
+      exit (0);
+    }
     while (inFile.get() != '\n'){};
-    int npixels = row * cols; 
-    unsigned char buf[3*npixels];   
-    inFile.read((char*) buf, npixels * 3);
-    img = new RGB*[row];
+    int npixels = row * cols; // size of the image
+    unsigned char buf[3*npixels];    // buffer with size of the image
+    inFile.read((char*) buf, npixels * 3); // read every binary into the buffer
+    img = new RGB*[row];    // allocate the row
     int k = 0;
     for (int i = 0; i < row; i++)
     {
-      img[i] = new RGB[cols];
+      img[i] = new RGB[cols]; // allocate the col
 
       for (int j = 0; j < cols; j++)
       {
@@ -50,6 +54,20 @@ void PPM::read(const string& nameFile) {
   }
   inFile.close();
 }
+/*
+    int **                int *                int 
+    +---+                 +---+                +---+
+pt: |   | --------------->|   | pt[0] -------->|   | pt[0][0]
+    +---+                 +---+                +---+
+                          |   | pt[1]          |   | pt[0][1]
+                          +---+                +---+
+                          |   | pt[2]          |   | pt[0][2]
+                          +---+                +---+
+                           ...                  ...
+                          +---+                +---+
+                          |   | pt[9]          |   | pt[0][9]
+                          +---+                +---+
+*/
 
 void PPM::write(const string &nameFile ) 
 { 
@@ -57,22 +75,22 @@ void PPM::write(const string &nameFile )
   PPM p;
   string magic_ID = "P6";
   int max_value = 255;
-  string new_Name = nameFile.substr(0, nameFile.find(".", 0));
-  outFile.open ((new_Name + "_wmsg.ppm").c_str(), ios::binary| ios::out);
+  string new_Name = nameFile.substr(0, nameFile.find(".", 0)); // parse the name of the file before the dot
+  outFile.open ((new_Name + "_wmsg.ppm").c_str(), ios::binary| ios::out); // open the same name file + _wmsg.ppm
   if (!outFile.is_open())
   {
     cout << new_Name << " can't open " << endl;
   }
   if (outFile.is_open())
   {  
-	  outFile << magic_ID << endl;
-    outFile << cols << " " << row << endl;
+	  outFile << magic_ID << endl;  
+    outFile << cols << " " << row << endl;  
     outFile << max_value << endl;
     for (int i = 0; i < row; i++)
     {
       for (int j = 0; j < cols; j++)
       { 
-        outFile << img[i][j].R << img[i][j].G << img[i][j].B;
+        outFile << img[i][j].R << img[i][j].G << img[i][j].B; // write image to new file
       }
     }
   }
