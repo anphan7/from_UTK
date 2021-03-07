@@ -16,14 +16,14 @@ void PPM::read(const string& nameFile) {
   }
   if (inFile.is_open())
   { 
-    inFile >> magic_ID >> cols >> row >> max_value;
+    inFile >> magic_ID >> cols >> row >> max_value; 
 
     while (inFile.get() != '\n'){};
-    int npixels = row * cols;
+    int npixels = row * cols; 
     unsigned char buf[3*npixels];   
     inFile.read((char*) buf, npixels * 3);
     img = new RGB*[row];
-    int k =0;
+    int k = 0;
     for (int i = 0; i < row; i++)
     {
       img[i] = new RGB[cols];

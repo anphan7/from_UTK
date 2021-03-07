@@ -36,6 +36,7 @@ public:
 			}
 			delete[] img;
 		}
+		
 	}
 	void read(const string&);
 	void write(const string&);
