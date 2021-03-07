@@ -14,6 +14,17 @@ void PPM::read(const string& nameFile) {
   {
     cout << nameFile << " can't open " << endl;
   }
+  /*
+  if (magic_ID != 'P6')
+  {
+    cout << "This is not a P6 format PPM image." << endl;
+    cout << " Please try a differnt file " << endl;
+  }
+  */
+  if (max_value > 255)
+  {
+    cout << "The max value of color exceed 255" << endl;
+  }
   if (inFile.is_open())
   { 
     inFile >> magic_ID >> cols >> row >> max_value; 

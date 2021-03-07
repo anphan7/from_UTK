@@ -2,9 +2,10 @@
 
 #include "Rnumgen.h"
 
-void rnumgen::pdf(int seedvalue, vector<int> &v)
+rnumgen::rnumgen(int seedvalue, vector<int> &v)
 {
     srand(seedvalue);
+
     F.resize(v.size());
     partial_sum(v.begin(), v.end(), F.begin());
     transform(F.begin(), F.end(), F.begin(), bind2nd(divides<float>(), F.back()));
