@@ -31,102 +31,97 @@ void set_pixel_list(PPM &img, vector <pixel> &v  ) {
           pixel p;
           p.r= i;
           p.c = j;
-          v.push_back(p);
-        }
-      }
-    }
-  }
-}
-
-
+          v.push_back(p);  }}}}}
 void encode(PPM &img, vector <pixel> &v) {
-  int index = 0;
+  int i = 0;
   int color_change = 3;
   char c;
+  char bit;
+  char bit_ETX;
+
   while(cin.get(c))
   {
-    for (int k = 0; k < 7; k++)
+    for (int k_th = 0; k_th < 7; k_th++)
     {
+      bit = c >> k_th;
       if ((color_change % 3) == 0)
       {
-        img[v[index].r][v[index].c].R &= 0xFE;
-        img[v[index].r][v[index].c].R |= ((c >> k) & 0x1);
+        img[v[i].r][v[i].c].R &= 0xFE;
+        img[v[i].r][v[i].c].R |= bit & 0x1;
       }
       if ((color_change % 3) == 1)
       {
-        img[v[index].r][v[index].c].G &= 0xFE;
-        img[v[index].r][v[index].c].G |= ((c >> k) & 0x1);
+        img[v[i].r][v[i].c].G &= 0xFE;
+        img[v[i].r][v[i].c].G |= bit & 0x1;
       }
       if ((color_change % 3) == 2)
       {
-        img[v[index].r][v[index].c].B &= 0xFE;
-        img[v[index].r][v[index].c].B |= ((c >> k) & 0x1);
+        img[v[i].r][v[i].c].B &= 0xFE;
+        img[v[i].r][v[i].c].B |= bit & 0x1;
       }
-      color_change+=1;
-      index+=1;
+      color_change++;
+      i++;
     }
   }
-  
-  for (int k = 0; k < 7; k++)
+  for (int k_th = 0; k_th < 7; k_th++)
   {
+    bit_ETX = ETX >> k_th;
     if ((color_change % 3) == 0)
       {
-        img[v[index].r][v[index].c].R &= 0xFE;
-        img[v[index].r][v[index].c].R |= ((ETX >> k) & 0x1);
+        img[v[i].r][v[i].c].R &= 0xFE;
+        img[v[i].r][v[i].c].R |= bit_ETX & 0x1;
       }
       if ((color_change % 3) == 1)
       {
-        img[v[index].r][v[index].c].G &= 0xFE;
-        img[v[index].r][v[index].c].G |= ((ETX >> k) & 0x1);
+        img[v[i].r][v[i].c].G &= 0xFE;
+        img[v[i].r][v[i].c].G |= bit_ETX & 0x1;
       }
       if ((color_change % 3) == 2)
       {
-        img[v[index].r][v[index].c].B &= 0xFE;
-        img[v[index].r][v[index].c].B |= ((ETX >> k) & 0x1);
+        img[v[i].r][v[i].c].B &= 0xFE;
+        img[v[i].r][v[i].c].B |= bit_ETX & 0x1;
       }
-      color_change+=1;
-      index+=1;
+      color_change++;
+      i++;
   }
 }
 
 void decode(PPM &img, vector <pixel> &v) {  
-  int counter = 3;
-  int index = 0;
-  char out = 0;
-  char out2 = 0 ;
+  int color_change = 3;
+  int i = 0;
+  char c;
+  char text;
   while(1)
   {
-    for (int k = 0; k < 7; k++)
+    for (int k_th = 0; k_th < 7; k_th++)
     {
-      if ((counter % 3) == 0)
+      if ((color_change % 3) == 0)
       {
-        out |= img[v[index].r][v[index].c].R & 0x1;
-        out = out << 1;
+        c |= img[v[i].r][v[i].c].R & 0x1;
+        c = c << 1;
       }
-      if ((counter % 3) == 1)
+      if ((color_change % 3) == 1)
       {
-        out |= img[v[index].r][v[index].c].G & 0x1;
-        out = out << 1;
+        c |= img[v[i].r][v[i].c].G & 0x1;
+        c = c << 1;
       }
-      if ((counter % 3) == 2)
+      if ((color_change % 3) == 2)
       {
-        out |= img[v[index].r][v[index].c].B & 0x1;
-        out = out << 1;
+        c |= img[v[i].r][v[i].c].B & 0x1;
+        c = c << 1;
       }
-      counter += 1;
-      index += 1;
+      color_change++;
+      i++;
     }
-    for (int i = 0; i < 8; i++)
+    for (int j = 0; j < 8; j++)
     {
-      if ((out & (1<< i)))
-      {
-        out2 |= 1 << ((8-1)-i);
-      }
+      if ((c & (1 << j)))
+       text |= 1 << (7 - j);
+      
     }
-    if (out2 == ETX) { break;}
-    cout.put (out2);
-    out = 0x0;
-    out2 = 0x0;
+    if (text == ETX) { break;} // stop when hit ETX
+    cout.put (text); // print the decrypted char
+    text = 0; // start over
   }
     
 }
