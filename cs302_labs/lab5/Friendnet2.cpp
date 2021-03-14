@@ -6,16 +6,14 @@
 #include <stdlib.h>     /* srand, rand */
 #include <iterator> // for iterators 
 #include <iomanip>      // std::setw
+#include <algorithm>    // std::sort
 
 using namespace std;
 
 void set_oldfriends(vector <string> &name, vector< vector <int> > &friends, int M0, int M1) {
   int N = (int)name.size(); // N = 1321 
   //initialize 2D-vector-array friends (hint: use vector::assign())
-  friends.resize(N);
-
-  for ( int i = 0; i < N; i++)
-    friends[i].assign(N, 0);  
+  friends.resize(N); 
 
   for (int i=0; i<N; i++) {
 	  set <int> doknow; //declare std::set called doknow
@@ -23,7 +21,7 @@ void set_oldfriends(vector <string> &name, vector< vector <int> > &friends, int 
 	  int M = M0 + rand() % M1; //initialize M (random number of friends: function of M0, M1)
     
     while ((int)doknow.size() < M) {
-       int j= rand() % N; //  compute j (random friend index: hint j != i)
+       int j = rand() % N; //  compute j (random friend index: hint j != i)
        if (j != i)    
         doknow.insert(j);
 	  }
@@ -33,8 +31,12 @@ void set_oldfriends(vector <string> &name, vector< vector <int> > &friends, int 
     */
     for (std::set<int>::iterator it = doknow.begin(); it != doknow.end(); ++it)
     {
-      friends[i][*it] = 1;
-      friends[*it][i] = 1;
+      friends[i].push_back(*it);
+      friends[*it].push_back(i);
+      sort(friends[*it].begin(), friends[*it].end());
+      sort(friends[i].begin(), friends[i].end());
+      unique(friends[*it].begin(), friends[*it].end() );
+      unique(friends[i].begin(), friends[i].end() );
     }
   }
 }
@@ -42,22 +44,21 @@ void set_oldfriends(vector <string> &name, vector< vector <int> > &friends, int 
 void set_newfriends(vector< vector <int> > &friends, vector< vector <int> > &new_friends) {
   int N = (int)friends.size();
   new_friends.resize(N);   
-
-  for (int i = 0; i < N; i++)
-    new_friends[i].assign(N, 0);             //initialize 2D-vector-array new_friends (hint: use vector::assign())
-
+  std::vector<int>::iterator it;
+  std::vector<int>::iterator temp;
   for (int i=0; i<N; i++) 
   {
     for (int j = 0; j < N; j++) 
     {
-      if (friends[i][j] == 1)
+      it = find(friends[i].begin(), friends[i].end(), j); // j friend at location i
+      if (it != friends[i].end())
       {
         for (int k = 0; k < N; k++)
         {
-          if (friends[j][k] == 1)
+          temp = find(friends[j].begin(), friends[j].end(), k);  // k friend at location j
+          if (k != i  && temp != friends[j].end())
           {
-            if( k!= i && friends[i][k] == 0)// if (k-is-not-i && k-is-not-friend-of-i)
-              new_friends[i][k] = 1;            //update the corresponding pairs of new_friends entries
+              new_friends[k].push_back(i);
           }
         }
       }
@@ -71,25 +72,26 @@ void writetofile(const char *fname, vector<string> &name, vector< vector <int> >
   int N = (int)name.size();
   int count = 0;  // keep 
   //determine max name length
+  std::vector<int>::iterator it;
+ 
+
   if (outFile.is_open())
   {
     for (int i=0; i<N ; i++) {
       outFile << name[i] << right << setw(15 - name[i].size()) << " : ";  // print names
-      for (int j = 0; j < N;  j++) //each adjacent friend: friends[i][j] == 1) 
+      for ( it = friends[i].begin(); it != friends[i].end(); ++it) //each adjacent friend: friends[i][j] == 1) 
       { 
-          if (friends[i][j] == 1)
-          {
             if (count % 8 == 0 && count > 0)
             {
               outFile << endl;
               outFile << name[i] << right << setw(15 - name[i].size()) << " : ";  // print names
 
             }
-            outFile << left << name[j];    // print friends
-            outFile << setw(12 - name[j].size()) << left  << " "; 
+            outFile << left << name.at(*it);    // print friends
+            outFile << setw(12 - name.at(*it).size()) << left  << " "; 
             count++;
-          }
-        }  //pretty-print name[i] and name[j] (see assignment) 
+          
+      }  //pretty-print name[i] and name[j] (see assignment) 
         outFile << endl;
         count = 0;
     }
