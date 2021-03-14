@@ -102,12 +102,13 @@ void writetofile(const char *fname, vector<string> &name, vector< vector <int> >
 int main(int argc, char *argv[]) {
   //parse argc, argv arguments
   //print usage message and exit if invalid
-/*  
-  if (argc != 2)
+  string mode_seed = argv[1];
+  if (argc != 3 || (argc != 1 && mode_seed != "-seed"))
   {
     cout << "Usage: cat datafile.txt | ./Friendnet1 [-seed N]" << endl;
+    return 0;
   }
-*/
+
   ifstream inFile;
   string name;
   vector<string> v_name;

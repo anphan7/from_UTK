@@ -6,6 +6,8 @@
 #include <stdlib.h>     /* srand, rand */
 #include <iterator> // for iterators 
 #include <iomanip>      // std::setw
+#include <stdio.h>
+#include <string.h>
 
 using namespace std;
 
@@ -100,22 +102,24 @@ void writetofile(const char *fname, vector<string> &name, vector< vector <int> >
 int main(int argc, char *argv[]) {
   //parse argc, argv arguments
   //print usage message and exit if invalid
-/*  
-  if (argc != 2)
+  string mode_seed = argv[1];
+  if (argc != 3 || (argc != 1 && mode_seed != "-seed"))
   {
     cout << "Usage: cat datafile.txt | ./Friendnet1 [-seed N]" << endl;
+    return 0;
   }
-*/
+  
   ifstream inFile;
   string name;
   vector<string> v_name;
+
   while (cin >> name)
   {
     v_name.push_back(name);
     name.clear();
   }
 
-  if (argc == 1 || argc == 2)
+  if (argc == 1)
     srand(time(NULL));
   else{
     int seed = atoi(argv[2]) ; //seed random number generator
