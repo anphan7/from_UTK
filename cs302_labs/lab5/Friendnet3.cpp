@@ -1,3 +1,9 @@
+/*
+  Name: An Phan
+  CS-302
+  Description: replacing vector with set definitions
+
+*/
 #include <iostream>
 #include <vector>
 #include <string>
@@ -98,13 +104,14 @@ void writetofile(const char *fname, vector<string> &name, vector< set <int> > &f
 int main(int argc, char *argv[]) {
   //parse argc, argv arguments
   //print usage message and exit if invalid
-  string mode_seed = argv[1];
-  if (argc != 3 || (argc != 1 && mode_seed != "-seed"))
+  if (argc != 3 && argc != 1)
   {
     cout << "Usage: cat datafile.txt | ./Friendnet1 [-seed N]" << endl;
+  }
+  if (argc == 2 || argc > 3)
+  {
     return 0;
   }
-  ifstream inFile;
   string name;
   vector<string> v_name;
   while (cin >> name)

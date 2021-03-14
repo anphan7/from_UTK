@@ -1,3 +1,8 @@
+/*
+  Name: An Phan
+  CS-302
+  Description: Sparse  matrix 
+*/
 #include <iostream>
 #include <vector>
 #include <string>
@@ -7,13 +12,14 @@
 #include <iterator> // for iterators 
 #include <iomanip>      // std::setw
 #include <algorithm>    // std::sort
+#include <string.h>
 
 using namespace std;
 
 void set_oldfriends(vector <string> &name, vector< vector <int> > &friends, int M0, int M1) {
   int N = (int)name.size(); // N = 1321 
   //initialize 2D-vector-array friends (hint: use vector::assign())
-  friends.resize(N); 
+  friends.resize(N); //extent the size 
 
   for (int i=0; i<N; i++) {
 	  set <int> doknow; //declare std::set called doknow
@@ -22,21 +28,22 @@ void set_oldfriends(vector <string> &name, vector< vector <int> > &friends, int 
     
     while ((int)doknow.size() < M) {
        int j = rand() % N; //  compute j (random friend index: hint j != i)
-       if (j != i)    
-        doknow.insert(j);
+       if (j != i)    // make sure they are not friends with themselves :(
+        doknow.insert(j);// insert into the doknow queue
 	  }
     /*
 	  use iterator to sweep thru doknow set
 	  update the corresponding pairs of friends entries
     */
-    for (std::set<int>::iterator it = doknow.begin(); it != doknow.end(); ++it)
+    for (std::set<int>::iterator it = doknow.begin(); it != doknow.end(); ++it)  // extract from the doknow set
     {
-      friends[i].push_back(*it);
+      friends[i].push_back(*it);    // push the value to vector
       friends[*it].push_back(i);
-      sort(friends[*it].begin(), friends[*it].end());
+      sort(friends[*it].begin(), friends[*it].end()); //sort the name
       sort(friends[i].begin(), friends[i].end());
-      unique(friends[*it].begin(), friends[*it].end() );
+      unique(friends[*it].begin(), friends[*it].end() ); // and make it unique
       unique(friends[i].begin(), friends[i].end() );
+                                                          // 2-way relationship
     }
   }
 }
@@ -44,21 +51,21 @@ void set_oldfriends(vector <string> &name, vector< vector <int> > &friends, int 
 void set_newfriends(vector< vector <int> > &friends, vector< vector <int> > &new_friends) {
   int N = (int)friends.size();
   new_friends.resize(N);   
-  std::vector<int>::iterator it;
-  std::vector<int>::iterator temp;
+  std::vector<int>::iterator it;    // find j
+  std::vector<int>::iterator temp;  //  find k
   for (int i=0; i<N; i++) 
   {
     for (int j = 0; j < N; j++) 
     {
-      it = find(friends[i].begin(), friends[i].end(), j); // j friend at location i
-      if (it != friends[i].end())
+      it = find(friends[i].begin(), friends[i].end(), j); // find the name at j-th location
+      if (it != friends[i].end())  
       {
         for (int k = 0; k < N; k++)
         {
-          temp = find(friends[j].begin(), friends[j].end(), k);  // k friend at location j
-          if (k != i  && temp != friends[j].end())
+          temp = find(friends[j].begin(), friends[j].end(), k);  //  find the name at k-th locatio
+          if (k != i  && temp != friends[j].end())    // find the mightknow's friends
           {
-              new_friends[k].push_back(i);
+              new_friends[k].push_back(i);    // push the value to the new_friend vector
           }
         }
       }
@@ -102,15 +109,16 @@ void writetofile(const char *fname, vector<string> &name, vector< vector <int> >
 int main(int argc, char *argv[]) {
   //parse argc, argv arguments
   //print usage message and exit if invalid
-  string mode_seed = argv[1];
-  if (argc != 3 || (argc != 1 && mode_seed != "-seed"))
+  
+
+  if (argc != 3 && argc != 1)
   {
     cout << "Usage: cat datafile.txt | ./Friendnet1 [-seed N]" << endl;
-    return 0;
   }
+  if (argc == 2 || argc > 3){ return 0; }
 
-  ifstream inFile;
   string name;
+
   vector<string> v_name;
   while (cin >> name)
   {
