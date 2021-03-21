@@ -1,16 +1,10 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
-
+#include <iomanip>
 using namespace std;
 
-
 int main(){
-    int i = 4;
-    int j = 10;
-    cout << i << " " << j << endl;
-    swap (i, j);
-    cout << i << "  " << j << endl;
-
-
+    double f = 13.14159;
+    cout << fixed;
+    cout << setprecision(3) << f << endl;
+    return 0;
 }
