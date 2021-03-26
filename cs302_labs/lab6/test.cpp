@@ -243,7 +243,7 @@ void create_citygraph(vector <city> &c, vector < vector <int> > &c_graph)
 
   for (it = regional.begin(); it != regional.end(); ++it)
   {
-	for (it2 = regional.begin(); it2 <= it; ++it2)
+	for (it2 = regional.begin(); it2 != regional.end(); ++it2)
 	{
 		if (*it != *it2)
 		{
@@ -275,8 +275,41 @@ void create_citygraph(vector <city> &c, vector < vector <int> > &c_graph)
 		c_graph[dist[0].second].push_back(*it);
   
   }
+  for (it = gateway.begin(); it != gateway.end(); ++it)
+  {
+	for (it2 = gateway.begin(); it2 != gateway.end(); ++it2)
+	{
+		if (it != it2)
+		{
+			if (c[*it].get_zone() == c[*it2].get_zone() )
+			{
+				c_graph[*it].push_back(*it2);
+				c_graph[*it2].push_back(*it);
+			}
+			if (c[*it].get_zone() == c[*it].get_zone() )
+			{
+				float distance = c_t(DISTANCE, *it, *it2);
+				if (distance < 5200)
+				{
+					c_graph[*it].push_back(*it2);
+					c_graph[*it2].push_back(*it);
+				}
+			}
 
+		}
 
+	}
+
+  }
+
+	for (int i=0; i<N; i++)
+	{
+		sort(c_graph[i].begin(), c_graph[i].end());
+		it = unique(c_graph[i].begin(), c_graph[i].end());
+		c_graph[i].resize(it - c_graph[i].begin());
+	}
+
+  
 }
 
 void write_citygraph(vector <city> &c, vector < vector <int> > &c_graph) 
