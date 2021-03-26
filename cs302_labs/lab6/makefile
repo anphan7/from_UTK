@@ -1,7 +1,7 @@
 
 CC = g++
 CFLAGS = -g -Wall
-BIN = Citysim1
+BIN = Citysim2
 
 all: $(BIN)
 
