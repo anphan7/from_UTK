@@ -24,12 +24,9 @@ CITY GRAPH:
      5 Taipei_TW          1070.0 miles       1.9 hours
      6 Tokyo_JP           1310.0 miles       2.3 hours
      7 Seoul_KR            600.0 miles       1.1 hours
-     8 Bangalore_IN       3020.0 miles       5.3 hours
      9 New_Delhi_IN       2360.0 miles       4.1 hours
     10 Singapore_SG       2790.0 miles       4.9 hours
     11 Honolulu_HI        5100.0 miles       8.9 hours
-    12 Sydney_AU          5590.0 miles       9.8 hours
-    13 Wellington_NZ      6740.0 miles      11.8 hours
     18 Frankfurt_DE       4860.0 miles       8.5 hours
 
 4 Hong_Kong_CN
@@ -59,11 +56,11 @@ CITY GRAPH:
      9 New_Delhi_IN       2930.0 miles      48.8 hours
 
 8 Bangalore_IN
-     3 Beijing_CN         3020.0 miles       5.3 hours
      4 Hong_Kong_CN       2500.0 miles      41.7 hours
      5 Taipei_TW          2990.0 miles      49.8 hours
      7 Seoul_KR           3490.0 miles      58.2 hours
      9 New_Delhi_IN       1090.0 miles      18.2 hours
+    10 Singapore_SG       1980.0 miles       3.5 hours
 
 9 New_Delhi_IN
      3 Beijing_CN         2360.0 miles       4.1 hours
@@ -76,20 +73,23 @@ CITY GRAPH:
      0 Cairo_EG           5160.0 miles       9.1 hours
      3 Beijing_CN         2790.0 miles       4.9 hours
      6 Tokyo_JP           3330.0 miles       5.8 hours
+     8 Bangalore_IN       1980.0 miles       3.5 hours
 
 11 Honolulu_HI
      3 Beijing_CN         5100.0 miles       8.9 hours
      6 Tokyo_JP           3880.0 miles       6.8 hours
+    12 Sydney_AU          5100.0 miles       8.9 hours
+    13 Wellington_NZ      4700.0 miles       8.2 hours
     24 Los_Angeles_CA     2570.0 miles       4.5 hours
     26 Miami_FL           4880.0 miles       8.6 hours
     27 New_York_NY        4990.0 miles       8.8 hours
 
 12 Sydney_AU
-     3 Beijing_CN         5590.0 miles       9.8 hours
+    11 Honolulu_HI        5100.0 miles       8.9 hours
     13 Wellington_NZ      1390.0 miles      23.2 hours
 
 13 Wellington_NZ
-     3 Beijing_CN         6740.0 miles      11.8 hours
+    11 Honolulu_HI        4700.0 miles       8.2 hours
     12 Sydney_AU          1390.0 miles      23.2 hours
 
 14 Copenhagen_DK
@@ -124,88 +124,83 @@ CITY GRAPH:
     15 London_UK           400.0 miles       0.7 hours
     16 Madrid_ES           910.0 miles       1.6 hours
     17 Rome_IT             600.0 miles       1.1 hours
-    19 Chicago_IL         4360.0 miles       7.6 hours
-    20 Minneapolis_MN     4400.0 miles       7.7 hours
-    21 Denver_CO          5070.0 miles       8.9 hours
-    22 Houston_TX         5270.0 miles       9.2 hours
-    23 Knoxville_TN       4500.0 miles       7.9 hours
-    25 Mexico_City_MX     5970.0 miles      10.5 hours
     26 Miami_FL           4850.0 miles       8.5 hours
     27 New_York_NY        3880.0 miles       6.8 hours
 
 19 Chicago_IL
-    18 Frankfurt_DE       4360.0 miles       7.6 hours
     20 Minneapolis_MN      360.0 miles       6.0 hours
     21 Denver_CO           910.0 miles      15.2 hours
     22 Houston_TX          940.0 miles      15.7 hours
     23 Knoxville_TN        450.0 miles       7.5 hours
     25 Mexico_City_MX     1700.0 miles      28.3 hours
+    27 New_York_NY         720.0 miles       1.3 hours
     28 San_Fransisco_CA   1860.0 miles      31.0 hours
     29 Seattle_WA         1740.0 miles      29.0 hours
 
 20 Minneapolis_MN
-    18 Frankfurt_DE       4400.0 miles       7.7 hours
     19 Chicago_IL          360.0 miles       6.0 hours
     21 Denver_CO           700.0 miles      11.7 hours
     22 Houston_TX         1060.0 miles      17.7 hours
     23 Knoxville_TN        800.0 miles      13.3 hours
     25 Mexico_City_MX     1810.0 miles      30.2 hours
+    27 New_York_NY        1020.0 miles       1.8 hours
     28 San_Fransisco_CA   1590.0 miles      26.5 hours
     29 Seattle_WA         1400.0 miles      23.3 hours
 
 21 Denver_CO
-    18 Frankfurt_DE       5070.0 miles       8.9 hours
     19 Chicago_IL          910.0 miles      15.2 hours
     20 Minneapolis_MN      700.0 miles      11.7 hours
     22 Houston_TX          880.0 miles      14.7 hours
     23 Knoxville_TN       1180.0 miles      19.7 hours
+    24 Los_Angeles_CA      840.0 miles       1.5 hours
     25 Mexico_City_MX     1450.0 miles      24.2 hours
     28 San_Fransisco_CA    960.0 miles      16.0 hours
     29 Seattle_WA         1030.0 miles      17.2 hours
 
 22 Houston_TX
-    18 Frankfurt_DE       5270.0 miles       9.2 hours
     19 Chicago_IL          940.0 miles      15.7 hours
     20 Minneapolis_MN     1060.0 miles      17.7 hours
     21 Denver_CO           880.0 miles      14.7 hours
     23 Knoxville_TN        790.0 miles      13.2 hours
     25 Mexico_City_MX      760.0 miles      12.7 hours
+    26 Miami_FL            970.0 miles       1.7 hours
     28 San_Fransisco_CA   1650.0 miles      27.5 hours
     29 Seattle_WA         1900.0 miles      31.7 hours
 
 23 Knoxville_TN
-    18 Frankfurt_DE       4500.0 miles       7.9 hours
     19 Chicago_IL          450.0 miles       7.5 hours
     20 Minneapolis_MN      800.0 miles      13.3 hours
     21 Denver_CO          1180.0 miles      19.7 hours
     22 Houston_TX          790.0 miles      13.2 hours
     25 Mexico_City_MX     1480.0 miles      24.7 hours
+    27 New_York_NY         630.0 miles       1.1 hours
     28 San_Fransisco_CA   2130.0 miles      35.5 hours
     29 Seattle_WA         2120.0 miles      35.3 hours
 
 24 Los_Angeles_CA
     11 Honolulu_HI        2570.0 miles       4.5 hours
+    21 Denver_CO           840.0 miles       1.5 hours
     26 Miami_FL           2350.0 miles       4.1 hours
     27 New_York_NY        2460.0 miles       4.3 hours
     28 San_Fransisco_CA    350.0 miles       0.6 hours
     29 Seattle_WA          970.0 miles       1.7 hours
-    31 Buenos_Aires_AR    6160.0 miles      10.8 hours
-    33 Lima_PE            4200.0 miles       7.4 hours
 
 25 Mexico_City_MX
-    18 Frankfurt_DE       5970.0 miles      10.5 hours
     19 Chicago_IL         1700.0 miles      28.3 hours
     20 Minneapolis_MN     1810.0 miles      30.2 hours
     21 Denver_CO          1450.0 miles      24.2 hours
     22 Houston_TX          760.0 miles      12.7 hours
     23 Knoxville_TN       1480.0 miles      24.7 hours
+    26 Miami_FL           1290.0 miles       2.3 hours
     28 San_Fransisco_CA   1900.0 miles      31.7 hours
     29 Seattle_WA         2360.0 miles      39.3 hours
 
 26 Miami_FL
     11 Honolulu_HI        4880.0 miles       8.6 hours
     18 Frankfurt_DE       4850.0 miles       8.5 hours
+    22 Houston_TX          970.0 miles       1.7 hours
     24 Los_Angeles_CA     2350.0 miles       4.1 hours
+    25 Mexico_City_MX     1290.0 miles       2.3 hours
     27 New_York_NY        1100.0 miles       1.9 hours
     30 Santiago_CL        4160.0 miles       7.3 hours
     32 Rio_de_Janeiro_BR  4200.0 miles       7.4 hours
@@ -213,6 +208,9 @@ CITY GRAPH:
 27 New_York_NY
     11 Honolulu_HI        4990.0 miles       8.8 hours
     18 Frankfurt_DE       3880.0 miles       6.8 hours
+    19 Chicago_IL          720.0 miles       1.3 hours
+    20 Minneapolis_MN     1020.0 miles       1.8 hours
+    23 Knoxville_TN        630.0 miles       1.1 hours
     24 Los_Angeles_CA     2460.0 miles       4.3 hours
     26 Miami_FL           1100.0 miles       1.9 hours
     30 Santiago_CL        5160.0 miles       9.1 hours
@@ -241,10 +239,12 @@ CITY GRAPH:
 30 Santiago_CL
     26 Miami_FL           4160.0 miles       7.3 hours
     27 New_York_NY        5160.0 miles       9.1 hours
+    31 Buenos_Aires_AR     710.0 miles       1.2 hours
     32 Rio_de_Janeiro_BR  1830.0 miles       3.2 hours
+    33 Lima_PE            1540.0 miles       2.7 hours
 
 31 Buenos_Aires_AR
-    24 Los_Angeles_CA     6160.0 miles      10.8 hours
+    30 Santiago_CL         710.0 miles       1.2 hours
     33 Lima_PE            1960.0 miles      32.7 hours
 
 32 Rio_de_Janeiro_BR
@@ -255,6 +255,6 @@ CITY GRAPH:
     30 Santiago_CL        1830.0 miles       3.2 hours
 
 33 Lima_PE
-    24 Los_Angeles_CA     4200.0 miles       7.4 hours
+    30 Santiago_CL        1540.0 miles       2.7 hours
     31 Buenos_Aires_AR    1960.0 miles      32.7 hours
 

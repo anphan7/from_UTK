@@ -238,67 +238,103 @@ void create_citygraph(vector <city> &c, vector < vector <int> > &c_graph)
   for (int i = 0; i < N; i++)
   {
     if (c[i].get_type() == "REGIONAL") regional.push_back(i);
-    else gateway.push_back(i);
+    if (c[i].get_type() == "GATEWAY" ) gateway.push_back(i);
   }
+  /*
+for (it = regional.begin(); it != regional.end(); ++it)
+  { cout << *it << " ";}
+    cout << endl;
 
+      for (it2 = gateway.begin(); it2 != gateway.end(); ++it2)
+  {cout << *it2 << " ";}
+  */
   for (it = regional.begin(); it != regional.end(); ++it)
   {
-	for (it2 = regional.begin(); it2 != regional.end(); ++it2)
-	{
-		if (*it != *it2)
-		{
-			if (c[*it].get_zone() == c[*it2].get_zone())
-			{
-				c_graph[*it].push_back(*it2);
-				c_graph[*it2].push_back(*it);
-			}
-		}
+    for (it2 = regional.begin(); it2 != regional.end(); ++it2)
+    {
+      if (*it != *it2)
+      {
+        if (c[*it].get_zone() == c[*it2].get_zone())
+        {
+          //c_graph[*it].push_back(*it2);
+          //c_graph[*it2].push_back(*it);
+        }
+      }
 
-	}  
-	
-  //vector< pair <float, int> > dist_temp;
-	for (it2 = gateway.begin(); it2 != gateway.end(); ++it2)
-	{	
-		if (it != it2)
-		{
-			if (c[*it].get_zone() == c[*it2].get_zone())
-			{
-				float distance = c_t(DISTANCE, *it, *it2);
-				dist.push_back(make_pair(distance, *it2));
-			}
-
-		}
-	}
-  
-		std::sort(dist.begin(), dist.end());
-		c_graph[*it].push_back(dist[0].second);
-		c_graph[dist[0].second].push_back(*it);
-  
+    }  
   }
+  int i = 0;
+  int temp;
+  int temp2;
+  for (it = regional.begin(); it != regional.end(); ++it)
+  {
+    for (it2 = gateway.begin(); it2 != gateway.end(); ++it2)
+    {	
+      if (it != it2)
+      {
+        if (c[*it].get_zone() == c[*it2].get_zone())
+        {
+          float distance = c_t(DISTANCE, *it, *it2);
+
+          dist.push_back(make_pair(distance, *it2));
+          //cout << "it="<< *it << " it2=" << *it2 << endl;
+          temp = *it; temp2 = *it2;
+          i++;
+        }
+
+      }
+      
+    }
+    
+      //std::sort(dist.begin(), dist.end());
+      //c_graph[*it].push_back(dist[0].second);
+      cout <<"it " << *it<< " ";
+      cout << endl;
+      c_graph[dist[0].second].push_back(temp);
+      cout << "dist[0].second: " << dist[0].second << " ";
+      cout << endl;
+  }
+  /*
+  for (int i = 0; i < dist.size(); ++i)
+  {
+    cout << "first: " << dist[i].first << " second: " << dist[i].second << endl;
+
+  }
+  std::sort(dist.begin(), dist.end());
+  cout << "---------------------------------------" << endl;
+  for (int i = 0; i < dist.size(); ++i)
+  {
+    cout << "first: " << dist[i].first << " second: " << dist[i].second << endl;
+
+  }
+  */
+  //cout << i << endl;
+  
+  
+  
+  
   for (it = gateway.begin(); it != gateway.end(); ++it)
   {
-	for (it2 = gateway.begin(); it2 != gateway.end(); ++it2)
-	{
-		if (it != it2)
-		{
-			if (c[*it].get_zone() == c[*it2].get_zone() )
-			{
-				c_graph[*it].push_back(*it2);
-				c_graph[*it2].push_back(*it);
-			}
-			if (c[*it].get_zone() == c[*it].get_zone() )
-			{
-				float distance = c_t(DISTANCE, *it, *it2);
-				if (distance < 5200)
-				{
-					c_graph[*it].push_back(*it2);
-					c_graph[*it2].push_back(*it);
-				}
-			}
-
-		}
-
-	}
+    for (it2 = gateway.begin(); it2 != gateway.end(); ++it2)
+    {
+      if (it != it2)
+      {
+        if (c[*it].get_zone() == c[*it2].get_zone() )
+        {
+          //c_graph[*it].push_back(*it2);
+          //c_graph[*it2].push_back(*it);
+        }
+        if (c[*it].get_zone() == c[*it].get_zone() )
+        {
+          float distance = c_t(DISTANCE, *it, *it2);
+          if (distance < 5200)
+          {
+            //c_graph[*it].push_back(*it2);
+            //c_graph[*it2].push_back(*it);
+          }
+        }
+      }
+    }
 
   }
 
@@ -318,15 +354,15 @@ void write_citygraph(vector <city> &c, vector < vector <int> > &c_graph)
   int N = (int)c.size();
   costtable c_t(c);
   vector <int>::iterator it;
+
   outFile.open("city_graph.txt");
   outFile << "CITY GRAPH:" << endl;
   outFile << endl;
   for (int i = 0; i < N; i++){
-    std::sort(c_graph[i].begin(), c_graph[i].end());
+
     outFile << i << " " << c[i].get_name() << endl;
-    for (it = c_graph[i].begin(); it != c_graph[i].end(); ++it)
+    for (it = c_graph[i].begin(); it != c_graph[i].end(); it++)
     {
-      sort(c_graph[*it].begin(), c_graph[*it].end());
 
       outFile << setw(6) << *it << " " << c[*it].get_name() 
               << right << setw(25 - c[*it].get_name().length() ) << fixed << setprecision(1) <<c_t(DISTANCE, i, *it) << right << " miles"
@@ -359,7 +395,6 @@ int main(int argc, char *argv[])
       write_timetable(v_city);
 
       write_citygraph(v_city, c_graph);
-  cout << " here" << endl;
 
       // return from program
     }
