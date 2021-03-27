@@ -275,9 +275,7 @@ for (it = regional.begin(); it != regional.end(); ++it)
         if (c[*it].get_zone() == c[*it2].get_zone())
         {
           float distance = c_t(DISTANCE, *it, *it2);
-
           dist.push_back(make_pair(distance, *it2));
-          //cout << "it="<< *it << " it2=" << *it2 << endl;
           temp = *it; temp2 = *it2;
           i++;
         }
@@ -286,13 +284,9 @@ for (it = regional.begin(); it != regional.end(); ++it)
       
     }
     
-      //std::sort(dist.begin(), dist.end());
-      //c_graph[*it].push_back(dist[0].second);
-      cout <<"it " << *it<< " ";
-      cout << endl;
+      std::sort(dist.begin(), dist.end());
+      c_graph[*it].push_back(dist[0].second);
       c_graph[dist[0].second].push_back(temp);
-      cout << "dist[0].second: " << dist[0].second << " ";
-      cout << endl;
   }
   /*
   for (int i = 0; i < dist.size(); ++i)

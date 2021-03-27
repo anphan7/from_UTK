@@ -263,45 +263,26 @@ for (it = regional.begin(); it != regional.end(); ++it)
 
     }  
   }
-  int temp = 0;
-  int temp2 = 0;
-  float distance = 0;
   for (it = regional.begin(); it != regional.end(); ++it)
   {
     for (it2 = gateway.begin(); it2 != gateway.end(); ++it2)
     {	
-      
-      if (*it != *it2)
+      if (it != it2)
       {
-        if (distance == 0 && c[*it].get_zone() == c[*it2].get_zone() && c[*it].get_type() == "REGIONAL" && c[*it].get_type() != c[*it2].get_type())
+        if (c[*it].get_zone() == c[*it2].get_zone())
         {
-          temp = *it;
-          temp2 = *it2;
-          distance = c_t(DISTANCE, *it, *it2);
+          float distance = c_t(DISTANCE, *it, *it2);
+          dist.push_back(make_pair(distance, *it2));
+          
         }
-        else 
-        {
-          if (distance > c_t(DISTANCE, *it, *it2) && c[*it].get_zone() == c[*it2].get_zone() && c[*it].get_type() == "REGIONAL" && c[*it].get_type() != c[*it2].get_type())
-          {
-            temp = *it;
-            temp2 =*it2;
-            distance = c_t(DISTANCE, *it, *it2);
-          }
-        }
-      }
+      }    
     }
-    if (temp != temp2)
-    {
-      c_graph[temp].push_back(temp2);
-      c_graph[temp2].push_back(temp);
-      distance = 0;
-    }
+    
+      std::sort(dist.begin(), dist.end());
+      c_graph[*it].push_back(dist[0].second);
+      c_graph[dist[0].second].push_back(*it);
+      dist.clear();
   }
-  distance = 0;
-
-  
-  
-  
   
   for (it = gateway.begin(); it != gateway.end(); ++it)
   {
