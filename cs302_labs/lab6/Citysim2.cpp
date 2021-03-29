@@ -358,20 +358,9 @@ void graph::dijkstra_route(vector <city> &c, vector < vector<int> > &c_graph, st
       {
         source = i;
       }
-      else if (c[i].get_name() != from)
-      {
-        cout << from << " prefix not found" << endl;
-        return;
-      }
-
       if (c[i].get_name() == to)
       {
         sink = i;
-      }
-      else if (c[i].get_name() != to)
-      {
-        cout << to << " prefix not found" << endl;
-        return;
       }
 
     }
@@ -494,27 +483,22 @@ void graph::dijkstra_route(vector <city> &c, vector < vector<int> > &c_graph, st
     if (argc == 2 && (strcmp(argv[1], "-graphinfo") == 0))
     {
 
-      
         write_cityinfo(v_city);
-
         write_distancetable(v_city);
         write_timetable(v_city);
-
         write_citygraph(v_city, c_graph);
-
-        // return from program
-      }
+    }
     
     else if (argc == 2 && ( (strcmp(argv[1], "-distance") == 0) || (strcmp(argv[1], "-time") == 0) ) )
     {
       string from, to;
       string mode = argv[1];
       cout << "Enter> ";
+
       while ( cin >> from >> to){
         G.dijkstra_route(v_city, c_graph, mode, from, to);
         cout << "Enter> ";
       }
-
       cout << endl;
     }
     
