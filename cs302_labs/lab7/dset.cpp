@@ -1,5 +1,4 @@
 #include "dset.h" 
-#include <iostream>
 
 dset::dset(int N)
 {

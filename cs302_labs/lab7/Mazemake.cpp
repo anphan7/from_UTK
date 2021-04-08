@@ -27,7 +27,14 @@ int main(int argc, char *argv[])
 {
   if (argc != 4)
   {
-    printf("usage: \n ");
+    printf("usage: ./mazemake nrow ncol maze.txt\n");
+    return 0;
+  }
+  int Nrow = atoi(argv[1]);
+  int Ncol = atoi(argv[2]);
+  if (Nrow <= 0 || Ncol <= 0)
+  {
+    printf("Row and Column need to be positive and greater than 0\n");
     return 0;
   }
 
@@ -40,8 +47,7 @@ int main(int argc, char *argv[])
   }
   else
   {
-    int Nrow = atoi(argv[1]);
-    int Ncol = atoi(argv[2]);
+    
     fprintf(fin, "MAZE %d  %d \n", Nrow, Ncol);
     int k = 0;
     int N = ((Ncol - 1) * Nrow) + ((Nrow - 1) * Ncol); //number of interior grid walls
@@ -73,13 +79,12 @@ int main(int argc, char *argv[])
       }
     }
     srand(time(NULL));
+    
     //randomly perturb list order: swap based
-
     for (int i = N - 1; i > 0; --i)
     {
       int a = rand() % (i+1);
       swap (wall[i], wall[a]);
-
     }
     dset DS(Nrow * Ncol);
 
@@ -90,17 +95,16 @@ int main(int argc, char *argv[])
       int ii = wall[i][0].c + (wall[i][0].r * Nrow);
       int jj = wall[i][1].c + (wall[i][1].r * Nrow);
 
-      //printf ("ii = %d, jj = %d\n", ii, jj);
       if (DS.find(ii) != DS.find(jj)) //pair of cells given by wall[k][] are not connected (belong to different disjoint sets),merge them
       {
         DS.merge(ii, jj);
       }
       else //write wall location to file as two pairs of cell indices: i0 j0 i1 j1
       {
-        fprintf(fin, "  %d ", wall[i][0].c);
-        fprintf(fin, "  %d ", wall[i][0].r);
-        fprintf(fin, "  %d ", wall[i][1].c);
-        fprintf(fin,"  %d \n", wall[i][1].r);
+        fprintf(fin, "  %3d ", wall[i][0].c);
+        fprintf(fin, "  %3d ", wall[i][0].r);
+        fprintf(fin, "  %3d ", wall[i][1].c);
+        fprintf(fin,"  %3d \n", wall[i][1].r);
       }
 
       if (DS.size() == 1)
@@ -109,10 +113,10 @@ int main(int argc, char *argv[])
     i++;
     for (; i < N; i++) //write any remaining walls to file
     {
-      fprintf(fin,"  %d ", wall[i][0].c);
-      fprintf(fin,"  %d ", wall[i][0].r);
-      fprintf(fin,"  %d ", wall[i][1].c);
-      fprintf(fin,"  %d \n", wall[i][1].r);
+      fprintf(fin,"  %3d ", wall[i][0].c);
+      fprintf(fin,"  %3d ", wall[i][0].r);
+      fprintf(fin,"  %3d ", wall[i][1].c);
+      fprintf(fin,"  %3d \n", wall[i][1].r);
     }
     fclose(fin); //close output file
   }
