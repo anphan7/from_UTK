@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <cstring>
 #include <ctime>
-#include <fstream>
+
 struct cell
 {
   int r, c;
@@ -117,6 +117,7 @@ void delete_2d_iswhite(int x, bool **iswhite)
         }
         delete[] iswhite;
 }
+
 int main(int argc, char *argv[])
 {
   if (argc != 3)
@@ -200,8 +201,9 @@ int main(int argc, char *argv[])
       fprintf(out, "%d %d\n", stack[i].c, stack[i].r);
     }
   }
-
-
+  delete_3d_wall(Nrow, Ncol, wall);
+  delete_2d_iswhite(Ncol, iswhite);
+  
   fclose(fp);
   fclose(out);
 }
