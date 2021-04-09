@@ -1,9 +1,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cstdio>
-#include <iostream>
 #include "dset.h"
-using namespace std;
 
 struct cell
 {
@@ -84,7 +82,8 @@ int main(int argc, char *argv[])
     for (int i = N - 1; i > 0; --i)
     {
       int a = rand() % (i+1);
-      swap (wall[i], wall[a]);
+      swap(wall[i][0], wall[a][0]);
+      swap(wall[i][1], wall[a][1]);
     }
     dset DS(Nrow * Ncol);
 

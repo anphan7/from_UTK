@@ -118,6 +118,24 @@ void delete_2d_iswhite(int x, bool **iswhite)
         delete[] iswhite;
 }
 
+void allocate_3d_wall(int x, int y, bool ***wall)
+{
+  for (int i = 0; i < y; i++)
+    {
+      wall[i] = new bool *[x];
+      for (int j = 0; j < x; j++)
+      {
+        wall[i][j] = new bool[4];
+      }
+    }
+}
+void allocate_2d_iswhite(int x, int y, bool **iswhite)
+{
+  for (int i = 0; i < y; i++)
+  {
+    iswhite[i] = new bool[x];
+  }
+}
 int main(int argc, char *argv[])
 {
   if (argc != 3)
@@ -135,24 +153,21 @@ int main(int argc, char *argv[])
   //determine Nrow,Ncol from input file
   fscanf(fp, "MAZE %d %d", &Nrow, &Ncol);
   /*
-  create arrac of walls for each grid cell
+  create array of walls for each grid cell
   initialize to have boundarc walls set and
   interior walls unset
   */
 
-  // allocate the 3d and 2d array
+  // allocate the 3d wall
   bool ***wall = new bool **[Ncol];
-  bool **iswhite = new bool *[Ncol];
-  for (int i = 0; i < Ncol; i++)
-  {
-    wall[i] = new bool *[Nrow];
-    iswhite[i] = new bool[Nrow];
-    for (int j = 0; j < Nrow; j++)
-    {
-      wall[i][j] = new bool[4];
-    }
-  }
+  allocate_3d_wall(Nrow, Ncol, wall);
+  
 
+  //allocate the 2d visited 
+  bool **iswhite = new bool *[Ncol];
+  allocate_2d_iswhite(Nrow, Ncol, iswhite);
+
+  // set the boundaries wall
   for (int i = 0; i < Ncol; i++)
   {
     for (int j = 0; j < Nrow; j++)
@@ -177,12 +192,12 @@ int main(int argc, char *argv[])
   }
 
   //read input file, set interior walls
-  int r1, c1, r2, c2;
-  while (fscanf(fp, "%d %d %d %d", &c1, &r1, &c2, &r2) == 4)
+  int x1, y1, x2, y2; 
+  while (fscanf(fp, "%d %d %d %d", &y1, &x1, &y2, &x2) == 4)
   {
 
-    wall[r1][c1][get_dir(r1, c1, r2, c2)] = true;
-    wall[r2][c2][get_dir(r2, c2, r1, c1)] = true;
+    wall[x1][y1][get_dir(x1, y1, x2, y2)] = true;
+    wall[x2][y2][get_dir(x2, y2, x1, y1)] = true;
   }
 
   //DFS path
@@ -192,8 +207,8 @@ int main(int argc, char *argv[])
   cell stack[Nrow * Ncol];
   int stack_size = 0;
 
-  bool success = solve(wall, iswhite, stack, &stack_size, &source, &sink);
-  if (success)
+  bool success_move = solve(wall, iswhite, stack, &stack_size, &source, &sink);
+  if (success_move)
   {
     fprintf(out, "PATH %d %d\n", Nrow, Ncol);
     for (int i = 0; i < stack_size; i++)
@@ -201,7 +216,7 @@ int main(int argc, char *argv[])
       fprintf(out, "%d %d\n", stack[i].c, stack[i].r);
     }
   }
-  delete_3d_wall(Nrow, Ncol, wall);
+  delete_3d_wall(Nrow, Ncol, wall); // delete leak memory
   delete_2d_iswhite(Ncol, iswhite);
   
   fclose(fp);
