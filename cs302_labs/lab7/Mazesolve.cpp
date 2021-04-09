@@ -147,78 +147,79 @@ int main(int argc, char *argv[])
   int Nrow, Ncol;
   //open input file for reading
   FILE *fp = fopen(argv[1], "r");
+  if (fp){
+    //open output file for writing
+    FILE *out = fopen(argv[2], "w");
+    //determine Nrow,Ncol from input file
+    fscanf(fp, "MAZE %d %d", &Nrow, &Ncol);
+    /*
+    create array of walls for each grid cell
+    initialize to have boundarc walls set and
+    interior walls unset
+    */
 
-  //open output file for writing
-  FILE *out = fopen(argv[2], "w");
-  //determine Nrow,Ncol from input file
-  fscanf(fp, "MAZE %d %d", &Nrow, &Ncol);
-  /*
-  create array of walls for each grid cell
-  initialize to have boundarc walls set and
-  interior walls unset
-  */
+    // allocate the 3d wall
+    bool ***wall = new bool **[Ncol];
+    allocate_3d_wall(Nrow, Ncol, wall);
+    
+    //allocate the 2d visited 
+    bool **iswhite = new bool *[Ncol];
+    allocate_2d_iswhite(Nrow, Ncol, iswhite);
 
-  // allocate the 3d wall
-  bool ***wall = new bool **[Ncol];
-  allocate_3d_wall(Nrow, Ncol, wall);
-  
-
-  //allocate the 2d visited 
-  bool **iswhite = new bool *[Ncol];
-  allocate_2d_iswhite(Nrow, Ncol, iswhite);
-
-  // set the boundaries wall
-  for (int i = 0; i < Ncol; i++)
-  {
-    for (int j = 0; j < Nrow; j++)
+    // set the boundaries wall
+    for (int i = 0; i < Ncol; i++)
     {
-      if (i == 0)
+      for (int j = 0; j < Nrow; j++)
       {
-        wall[i][j][GO_LEFT] = true;
-      }
-      if (i == (Ncol - 1))
-      {
-        wall[i][j][GO_RIGHT] = true;
-      }
-      if (j == 0)
-      {
-        wall[i][j][GO_UP] = true;
-      }
-      if (j == (Nrow - 1))
-      {
-        wall[i][j][GO_DOWN] = true;
+        if (i == 0)
+        {
+          wall[i][j][GO_LEFT] = true;
+        }
+        if (i == (Ncol - 1))
+        {
+          wall[i][j][GO_RIGHT] = true;
+        }
+        if (j == 0)
+        {
+          wall[i][j][GO_UP] = true;
+        }
+        if (j == (Nrow - 1))
+        {
+          wall[i][j][GO_DOWN] = true;
+        }
       }
     }
-  }
 
-  //read input file, set interior walls
-  int x1, y1, x2, y2; 
-  while (fscanf(fp, "%d %d %d %d", &y1, &x1, &y2, &x2) == 4)
-  {
-
-    wall[x1][y1][get_dir(x1, y1, x2, y2)] = true;
-    wall[x2][y2][get_dir(x2, y2, x1, y1)] = true;
-  }
-
-  //DFS path
-
-  cell source = cell(0, 0);
-  cell sink = cell(Nrow - 1, Ncol - 1);
-  cell stack[Nrow * Ncol];
-  int stack_size = 0;
-
-  bool success_move = solve(wall, iswhite, stack, &stack_size, &source, &sink);
-  if (success_move)
-  {
-    fprintf(out, "PATH %d %d\n", Nrow, Ncol);
-    for (int i = 0; i < stack_size; i++)
+    //read input file, set interior walls
+    int x1, y1, x2, y2; 
+    while (fscanf(fp, "%d %d %d %d", &y1, &x1, &y2, &x2) == 4)
     {
-      fprintf(out, "%d %d\n", stack[i].c, stack[i].r);
+
+      wall[x1][y1][get_dir(x1, y1, x2, y2)] = true;
+      wall[x2][y2][get_dir(x2, y2, x1, y1)] = true;
     }
+
+    //DFS path
+
+    cell source = cell(0, 0);
+    cell sink = cell(Nrow - 1, Ncol - 1);
+    cell stack[Nrow * Ncol];
+    int stack_size = 0;
+
+    bool success_move = solve(wall, iswhite, stack, &stack_size, &source, &sink);
+    if (success_move)
+    {
+      fprintf(out, "PATH %d %d\n", Nrow, Ncol);
+      for (int i = 0; i < stack_size; i++)
+      {
+        fprintf(out, "%d %d\n", stack[i].c, stack[i].r);
+      }
+    }
+    delete_3d_wall(Nrow, Ncol, wall); // delete leak memory
+    delete_2d_iswhite(Ncol, iswhite);
+    
+    fclose(fp);
+    fclose(out);
   }
-  delete_3d_wall(Nrow, Ncol, wall); // delete leak memory
-  delete_2d_iswhite(Ncol, iswhite);
-  
-  fclose(fp);
-  fclose(out);
+  else printf ("File is not exist\n");
 }
