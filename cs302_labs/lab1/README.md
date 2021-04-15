@@ -40,18 +40,126 @@ These verbal descriptions may seem confusing. If so, take look at the data and o
 
 ### Data and executable output example
 #### Data: raw and sorted
+```
 unix> cat list1.txt
 
-melon_cantaloupe     2.60     2.99 <br />
-apples_gala          1.80     1.21 <br />
-bananas              2.88     0.49 <br /> 
-oranges_naval        2.63     0.99 <br />
-apples_gala          3.00     1.21 <br />
-raspberries          4.76     3.25 <br />
-apples_gala          1.45     1.21 <br />
-mango                4.07     1.20 <br />
-blueberries          3.85     2.50 <br />
-oranges_honeybell    4.20     1.08 <br />
-apples_jazz          4.39     2.69 <br />
-oranges_honeybell    4.22     1.08 <br />
+melon_cantaloupe     2.60     2.99
+apples_gala          1.80     1.21
+bananas              2.88     0.49
+oranges_naval        2.63     0.99
+apples_gala          3.00     1.21
+raspberries          4.76     3.25
+apples_gala          1.45     1.21
+mango                4.07     1.20
+blueberries          3.85     2.50
+oranges_honeybell    4.20     1.08
+apples_jazz          4.39     2.69
+oranges_honeybell    4.22     1.08
+```
+```
+unix> sort -s k 1,1 list1.txt
+
+apples_gala          1.80     1.21
+apples_gala          3.00     1.21
+apples_gala          1.45     1.21
+apples_jazz          4.39     2.69
+bananas              2.88     0.49
+blueberries          3.85     2.50
+mango                4.07     1.20
+melon_cantaloupe     2.60     2.99
+oranges_honeybell    4.20     1.08
+oranges_honeybell    4.22     1.08
+oranges_naval        2.63     0.99
+raspberries          4.76     3.25
+```
+**Extra blank lines inserted for easier viewing. Note the sorting preserves the order of same named fruits (apples_gala, oranges_honeybell).**
+
+#### Fruit1 [and Fruit2]
+
+```
+unix> ./Fruit1 -inorder list1.txt
+
+melon_cantaloupe....  2.60 x 2.99 =    7.77  :     7.77
+apples_gala.........  1.80 x 1.21 =    2.18  :     9.95
+bananas.............  2.88 x 0.49 =    1.41  :    11.36
+oranges_naval.......  2.63 x 0.99 =    2.60  :    13.97
+apples_gala.........  3.00 x 1.21 =    3.63  :    17.60
+raspberries.........  4.76 x 3.25 =   15.47  :    33.07
+apples_gala.........  1.45 x 1.21 =    1.75  :    34.82
+mango...............  4.07 x 1.20 =    4.88  :    39.71
+blueberries.........  3.85 x 2.50 =    9.62  :    49.33
+oranges_honeybell...  4.20 x 1.08 =    4.54  :    53.87
+apples_jazz.........  4.39 x 2.69 =   11.81  :    65.68
+oranges_honeybell...  4.22 x 1.08 =    4.56  :    70.23
+```
+```
+unix> ./Fruit1 -sortall list1.txt
+
+apples_gala.........  1.80 x 1.21 =    2.18  :     2.18
+apples_gala.........  3.00 x 1.21 =    3.63  :     5.81
+apples_gala.........  1.45 x 1.21 =    1.75  :     7.56
+apples_jazz.........  4.39 x 2.69 =   11.81  :    19.37
+bananas.............  2.88 x 0.49 =    1.41  :    20.78
+blueberries.........  3.85 x 2.50 =    9.62  :    30.41
+mango...............  4.07 x 1.20 =    4.88  :    35.29
+melon_cantaloupe....  2.60 x 2.99 =    7.77  :    43.07
+oranges_honeybell...  4.20 x 1.08 =    4.54  :    47.60
+oranges_honeybell...  4.22 x 1.08 =    4.56  :    52.16
+oranges_naval.......  2.63 x 0.99 =    2.60  :    54.76
+raspberries.........  4.76 x 3.25 =   15.47  :    70.23
+```
+```
+unix> ./Fruit1 -sortone list1.txt
+
+apples_gala.........  6.25 x 1.21 =    7.56  :     7.56
+apples_jazz.........  4.39 x 2.69 =   11.81  :    19.37
+bananas.............  2.88 x 0.49 =    1.41  :    20.78
+blueberries.........  3.85 x 2.50 =    9.62  :    30.41
+mango...............  4.07 x 1.20 =    4.88  :    35.29
+melon_cantaloupe....  2.60 x 2.99 =    7.77  :    43.07
+oranges_honeybell...  8.42 x 1.08 =    9.09  :    52.16
+oranges_naval.......  2.63 x 0.99 =    2.60  :    54.76
+raspberries.........  4.76 x 3.25 =   15.47  :    70.23
+```
+**Extra blank lines inserted for easier viewing. Note sortall preserves the order of same named fruits (apples_gala, oranges_honeybell). Note sortone consolidates same named entries into one. **
+### Grading rubric
+NOTE 1: You must have a correctly functioning executable for each program you are asked to write. Verify your output against working solution executables. The TAs will do the same when grading your submissions. As stated by the lab grading guidelines, some points awarded will be based on what the code does (whether it behaves correctly, produces the correct output, etc), while some points will be based on how the code works (whether it is uses the proper data structures, algorithms, implementation strategy, etc).
+
+NOTE 2: Always use naming conventions described in the lab assignment.
+
+
+```
+Fruit1 (50 points)
+*05: Struct fruit incl. operator< overloading.
+*10: Commandline argument processing: options inorder, sortall, sortone.
+*20: Data processing using inorder option: file reading, output printing.
+*05: Data processing using sortall option: std::stable_sort.
+*10: Data processing using sortone option: combining same named fruit purchases.
+
+Fruit2 (70 points)
+*05: Struct product update: operator<=, ==, and += overloading.
+*20: Data processing using inorder option: file reading, output printing.
+*20: Data processing using sortall option: ordered insertion of data.
+*20: Data processing using sortone option: combining same named fruit purchases.
+*05: Linked list clean up.
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
