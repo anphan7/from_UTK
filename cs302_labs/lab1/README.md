@@ -4,11 +4,6 @@
 WELCOME to your first CS302 lab. During the semester, you will be taken through a sequence of increasingly more difficult programming assignments. They will be challenging but matched to your programming skills which will become better and better as we go along. In case you find yourself spending too much time on an assignment, be sure to seek help from the TAs or the instructor (in that order). You can also post questions to the class using Piazza (post conceptual questions as opposed to detailed code). The important thing is for you not to back yourself into a corner where you get so frustrated that you give up.
 You should find this first assigment (relatively) easy to do as it evolves around concepts you learned and practiced in CS140. If you took CS140 using Windows, use this lab to become familiar with Unix as all your programs must compile and run on a Hydra machine.
 
-
-## Getting Started
-Each day, the folks at Josephine's Juice Bar buy a lot of fruit for their smoothies. Management would like to know the quantity purchased of each different type of fruit (all fruit is purchased by weight) and at what cost plus the total cost. Your job is write two C++ programs that solve the problem based respectively on an array list and a linked list. Kidding aside, the real task, of course, is to get you back in the programming saddle before we get deep into new data structures and algorithms. Those of you not used to "word problems" will also gain some experience deciphering what lab assignments ask you to do.
-Run the script /home/cosc302/labs/lab1/copy to obtain two Hydra executables called sfruit1 and sfruit2, data files called list1.txt, list2.txt, and list3.txt, skeleton programs called Fruit1.cpp and Fruit2.cpp, and a makefile for compiling them into Hydra executables (once properly fleshed out).
-
 ### Assignment Details
 
 **Fruit1 -- 50 pts**
