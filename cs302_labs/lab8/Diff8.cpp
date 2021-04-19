@@ -7,45 +7,49 @@
 
 using namespace std;
 
-template <typename T>
-class matrix
-{
+template<typename T>
+class matrix {
+  // class for storing 2D array
   public:
-    matrix(int n_Nrows = 0, int n_Ncols = 0)
-    {
-      Nrows = n_Nrows;
-      Ncols = n_Ncols;
-
-      buf = new T *[Nrows];
-      buf[0] = new T[Nrows * Ncols];
-      for (int i = 1; i < Nrows; i++)
-        buf[i] = buf[i - 1] + Ncols;
+    matrix() {data = NULL; }
+    ~matrix() {
+        if(data){
+            if(data[0])
+                delete [] data[0];
+            delete [] data;
+ 
+            data = NULL;
+        }
+    }   
+ 
+    void assign(int Nrow1, int Ncol1, const T &value=T()) {
+        Nrows = Nrow1;
+        Ncols = Ncol1;
+ 
+        data = new T *[Nrows];
+        data[0] = new T [Nrows*Ncols];
+        for(int i=1; i<Nrows; i++)
+        {
+            data[i] = (data[i-1] + Ncols);
+        }
+ 
+        for(int i=0; i<Nrows; i++){
+            for(int j=0; j<Ncols; j++)
+            {
+                data[i][j] = value;
+                
+            }
+        }
     }
-    ~matrix()
-    {
-      delete[] buf[0];
-      delete[] buf;
-    }
-
-    void assign(int n_Nrows = 0, int n_Ncols = 0)
-    {
-      Nrows = n_Nrows;
-      Ncols = n_Ncols;
-
-      buf = new T *[Nrows];
-      buf[0] = new T[Nrows * Ncols];
-      for (int i = 1; i < Nrows; i++)
-        buf[i] = buf[i - 1] + Ncols;
-    }
-
-    T *operator[](int i) { return buf[i]; }
-
-    int get_Nrows() const { return Nrows; }
-    int get_Ncols() const { return Ncols; }
-
+ 
+    int get_Nrows() const {return Nrows; }
+    int get_Ncols() const {return Ncols; }
+ 
+    T * operator[] (int i) {return data[i]; }
+ 
   private:
     int Nrows, Ncols;
-    T **buf;
+    T **data;
 };
 
 class LCS
@@ -287,7 +291,7 @@ void LCS::print_edits(int i, int j, int del_num, int inst_num)
       cout << "< " << text1[print_i] << endl;
       print_i++;
     }
-    cout << "---\n";
+    cout << "---" << endl;
     for (int k = 0; k < inst_num; k++)
     {
       cout << "> " << text2[print_j] << endl;
@@ -303,7 +307,7 @@ int main(int argc, char *argv[])
 
   if (argc != 3)
   {
-    cerr << "./Diff8 file1.txt file2.txt\n";
+    cerr << "./Diff8 file1.txt file2.txt" << endl;
     return 1;
   }
 
