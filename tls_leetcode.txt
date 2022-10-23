@@ -1,0 +1,68 @@
+depth=2 C = IE, O = Baltimore, OU = CyberTrust, CN = Baltimore CyberTrust Root
+verify return:1
+depth=1 C = US, O = "Cloudflare, Inc.", CN = Cloudflare Inc ECC CA-3
+verify return:1
+depth=0 C = US, ST = California, L = San Francisco, O = "Cloudflare, Inc.", CN = sni.cloudflaressl.com
+verify return:1
+CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:C = US, ST = California, L = San Francisco, O = "Cloudflare, Inc.", CN = sni.cloudflaressl.com
+   i:C = US, O = "Cloudflare, Inc.", CN = Cloudflare Inc ECC CA-3
+ 1 s:C = US, O = "Cloudflare, Inc.", CN = Cloudflare Inc ECC CA-3
+   i:C = IE, O = Baltimore, OU = CyberTrust, CN = Baltimore CyberTrust Root
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIFODCCBN6gAwIBAgIQC+r1/cm3M4GL9IX1MV0RfjAKBggqhkjOPQQDAjBKMQsw
+CQYDVQQGEwJVUzEZMBcGA1UEChMQQ2xvdWRmbGFyZSwgSW5jLjEgMB4GA1UEAxMX
+Q2xvdWRmbGFyZSBJbmMgRUNDIENBLTMwHhcNMjIwNjE1MDAwMDAwWhcNMjMwNjE1
+MjM1OTU5WjB1MQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQG
+A1UEBxMNU2FuIEZyYW5jaXNjbzEZMBcGA1UEChMQQ2xvdWRmbGFyZSwgSW5jLjEe
+MBwGA1UEAxMVc25pLmNsb3VkZmxhcmVzc2wuY29tMFkwEwYHKoZIzj0CAQYIKoZI
+zj0DAQcDQgAEiR6n+NqGhlNwtVRXJkXqf5ZigyISZ3diKNPKT51bi3XGWrJ0e4Oc
+P3TTw62ShfpK6PIINLJzJHA30T3Sua6ldKOCA3kwggN1MB8GA1UdIwQYMBaAFKXO
+N+rrsHUOlGeItEX62SQQh5YfMB0GA1UdDgQWBBRgx3TWSm0GdPCR3iWoYj1UPwAo
+RTA+BgNVHREENzA1gg4qLmxlZXRjb2RlLmNvbYIMbGVldGNvZGUuY29tghVzbmku
+Y2xvdWRmbGFyZXNzbC5jb20wDgYDVR0PAQH/BAQDAgeAMB0GA1UdJQQWMBQGCCsG
+AQUFBwMBBggrBgEFBQcDAjB7BgNVHR8EdDByMDegNaAzhjFodHRwOi8vY3JsMy5k
+aWdpY2VydC5jb20vQ2xvdWRmbGFyZUluY0VDQ0NBLTMuY3JsMDegNaAzhjFodHRw
+Oi8vY3JsNC5kaWdpY2VydC5jb20vQ2xvdWRmbGFyZUluY0VDQ0NBLTMuY3JsMD4G
+A1UdIAQ3MDUwMwYGZ4EMAQICMCkwJwYIKwYBBQUHAgEWG2h0dHA6Ly93d3cuZGln
+aWNlcnQuY29tL0NQUzB2BggrBgEFBQcBAQRqMGgwJAYIKwYBBQUHMAGGGGh0dHA6
+Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBABggrBgEFBQcwAoY0aHR0cDovL2NhY2VydHMu
+ZGlnaWNlcnQuY29tL0Nsb3VkZmxhcmVJbmNFQ0NDQS0zLmNydDAMBgNVHRMBAf8E
+AjAAMIIBfwYKKwYBBAHWeQIEAgSCAW8EggFrAWkAdgDoPtDaPvUGNTLnVyi8iWvJ
+A9PL0RFr7Otp4Xd9bQa9bgAAAYFlLbhFAAAEAwBHMEUCIQC9MChcGlTbp15EwF0W
+T/CXiIHvQPRbjDzghlzI91bFmAIgHDrSPU3FPmLAa8PVeyyyiBItGqOU2HZY+un1
+qle/bRQAdgA1zxkbv7FsV78PrUxtQsu7ticgJlHqP+Eq76gDwzvWTAAAAYFlLbhy
+AAAEAwBHMEUCIQCGR06REQepoVycZpwAGd9p8ZIjTLA6PaeK04bm19kb6AIgLuMu
+OvqYugn5waEaFXXD70CymFuzXh8H04YyOa8O0IkAdwC3Pvsk35xNunXyOcW6WPRs
+XfxCz3qfNcSeHQmBJe20mQAAAYFlLbh5AAAEAwBIMEYCIQD1S/TvO6L+Po2Z/fE0
+5hyojjxIibvFt8PnAkczkINC1wIhAMG5pLu747KwVCpjfQWVMeWYF667adH+Vl8y
+v5aBL1p4MAoGCCqGSM49BAMCA0gAMEUCIAxEU9HdJ6u2TkJfRHHKKDAijQAfU0UQ
+fltvVTaEUsV5AiEAtwT1SXsdc/gRw5POl/oeAEKhTMvgu26g7cl3+9aj8uE=
+-----END CERTIFICATE-----
+subject=C = US, ST = California, L = San Francisco, O = "Cloudflare, Inc.", CN = sni.cloudflaressl.com
+
+issuer=C = US, O = "Cloudflare, Inc.", CN = Cloudflare Inc ECC CA-3
+
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: ECDSA
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 2630 bytes and written 384 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 256 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+DONE

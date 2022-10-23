@@ -1,0 +1,107 @@
+depth=2 C = US, O = Internet Security Research Group, CN = ISRG Root X1
+verify return:1
+depth=1 C = US, O = Let's Encrypt, CN = R3
+verify return:1
+depth=0 CN = *.stackexchange.com
+verify return:1
+CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:CN = *.stackexchange.com
+   i:C = US, O = Let's Encrypt, CN = R3
+ 1 s:C = US, O = Let's Encrypt, CN = R3
+   i:C = US, O = Internet Security Research Group, CN = ISRG Root X1
+ 2 s:C = US, O = Internet Security Research Group, CN = ISRG Root X1
+   i:O = Digital Signature Trust Co., CN = DST Root CA X3
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIHJzCCBg+gAwIBAgISBB41oKthxEq1Gz4pl9ui48sRMA0GCSqGSIb3DQEBCwUA
+MDIxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MQswCQYDVQQD
+EwJSMzAeFw0yMjA5MDQxMzA2NTBaFw0yMjEyMDMxMzA2NDlaMB4xHDAaBgNVBAMM
+Eyouc3RhY2tleGNoYW5nZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+AoIBAQDXd3kq7BAc1Aib9HpdlBVwFi0yXsJK/mMYKtdngBP1a37HWNEK/0Q1gbcX
+M7fggith8E8/4wQIN+rL4lr2/1DmvPmXe5KoMSeGnjMb60Kg5ExiSfO9eOqgxznw
+zUCwsF0/HW+IITdpxPR4ttZGAoVvaVNFzAOc7KKtQypw3MvNtrAgz58nU0jaGqMG
+21AJSOdRVHOv15iTdZzyJHMTuEKWwH7OxjchtgZD1iOrjFYzxAEn7a4EBa+GCaKy
+MFLBdEF/AaDegHaJV8cPjWQBbVcvowLfGOucxoLK1u3I1cKwrF8a4WJsrFvi3Scm
+oT071VEa+b1nri73tHtxg0fJLrI5AgMBAAGjggRJMIIERTAOBgNVHQ8BAf8EBAMC
+BaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAw
+HQYDVR0OBBYEFLEVF00k4wniKgwe/bqbOW20TqzWMB8GA1UdIwQYMBaAFBQusxe3
+WFbLrlAJQOYfr52LFMLGMFUGCCsGAQUFBwEBBEkwRzAhBggrBgEFBQcwAYYVaHR0
+cDovL3IzLm8ubGVuY3Iub3JnMCIGCCsGAQUFBzAChhZodHRwOi8vcjMuaS5sZW5j
+ci5vcmcvMIICFgYDVR0RBIICDTCCAgmCDyouYXNrdWJ1bnR1LmNvbYISKi5ibG9n
+b3ZlcmZsb3cuY29tghIqLm1hdGhvdmVyZmxvdy5uZXSCGCoubWV0YS5zdGFja2V4
+Y2hhbmdlLmNvbYIYKi5tZXRhLnN0YWNrb3ZlcmZsb3cuY29tghEqLnNlcnZlcmZh
+dWx0LmNvbYINKi5zc3RhdGljLm5ldIITKi5zdGFja2V4Y2hhbmdlLmNvbYITKi5z
+dGFja292ZXJmbG93LmNvbYIVKi5zdGFja292ZXJmbG93LmVtYWlsghgqLnN0YWNr
+b3ZlcmZsb3d0ZWFtcy5jb22CDyouc3VwZXJ1c2VyLmNvbYINYXNrdWJ1bnR1LmNv
+bYIQYmxvZ292ZXJmbG93LmNvbYIQbWF0aG92ZXJmbG93Lm5ldIIUb3BlbmlkLnN0
+YWNrYXV0aC5jb22CD3NlcnZlcmZhdWx0LmNvbYILc3N0YXRpYy5uZXSCDXN0YWNr
+YXBwcy5jb22CDXN0YWNrYXV0aC5jb22CEXN0YWNrZXhjaGFuZ2UuY29tghJzdGFj
+a292ZXJmbG93LmJsb2eCEXN0YWNrb3ZlcmZsb3cuY29tghNzdGFja292ZXJmbG93
+LmVtYWlsghZzdGFja292ZXJmbG93dGVhbXMuY29tghFzdGFja3NuaXBwZXRzLm5l
+dIINc3VwZXJ1c2VyLmNvbTBMBgNVHSAERTBDMAgGBmeBDAECATA3BgsrBgEEAYLf
+EwEBATAoMCYGCCsGAQUFBwIBFhpodHRwOi8vY3BzLmxldHNlbmNyeXB0Lm9yZzCC
+AQUGCisGAQQB1nkCBAIEgfYEgfMA8QB3AEHIyrHfIkZKEMahOglCh15OMYsbA+vr
+S8do8JBilgb2AAABgwjTUyIAAAQDAEgwRgIhAJxizmFUJ3OObH8/OXW0b+JvIrvV
+tK6pd+Rc2ynDmnxfAiEA03bM2Kfs5ywsUvc22sLcbS4p9x7MJd4SLRa4BkBo6f4A
+dgBGpVXrdfqRIDC1oolp9PN9ESxBdL79SbiFq/L8cP5tRwAAAYMI01M/AAAEAwBH
+MEUCIQDrkKFfDB0EB0iUECT6HOnFrn26fblm/HBrxJ3luNqMgQIgM1ajTaesubjk
+0JRMcBfWVUgROT8627Bb0pei4kRbs9EwDQYJKoZIhvcNAQELBQADggEBABAu2D5n
+Oq1Q7oiN13EAeqwkmCLnYgBQMoOE1hFvw31CIpSfPu7+CSmkMIsVHhtXcxQ0hbR5
+12u8SRlm28U7E4/QGxJ4UjS7pdQd84bU4ZWTCcxQyARr8VUi+WB6+ftMc8yfxHdW
+x8ffa68V5zGdpIZ+R6yYPmhaW8zPG93UC/9bfgP6TbICGMA292KN5DAsTcIepF48
+Hhal5KYYplhC5j2+/UFbhFrAfiqSPCOCEWfZU9iV327xZ0g2XaVDjAMOg2BC3rCj
+SadgAr7gBDNfVXrsSY2N68WD0a0PIvneDVxWd4IwGQnx5Vr8PJWxLJkOCQaC4RoO
+j3fFjUS6Sh2lUlI=
+-----END CERTIFICATE-----
+subject=CN = *.stackexchange.com
+
+issuer=C = US, O = Let's Encrypt, CN = R3
+
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 5188 bytes and written 402 bytes
+Verification: OK
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES128-GCM-SHA256
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES128-GCM-SHA256
+    Session-ID: 86D1EBAD8E2268E5AE7F7AC5110CF3A9C694933A091AB4532F145BB7FD7C178C
+    Session-ID-ctx: 
+    Master-Key: 9C8B3C3B19737C50609D6454FE465AA50363C794B66055A8DE5F1E6FB94815C83CD6DDC2756D2C19D9F3A57FD223A219
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - 40 eb 44 9f 5e 6d b9 35-2d 9f 0e d8 af ac 02 a8   @.D.^m.5-.......
+    0010 - ce 8b 75 07 24 8b 6f 74-35 b9 9a 16 d7 26 88 50   ..u.$.ot5....&.P
+    0020 - eb 87 96 8e 17 bb af 35-61 85 5e 8c c8 ea 0a d8   .......5a.^.....
+    0030 - 65 2b 32 3f 26 b7 3c 53-bd ae 4b c9 5d 5c 18 82   e+2?&.<S..K.]\..
+    0040 - a1 56 ac 45 23 1b ec 3d-f5 5b 53 38 63 58 1d f9   .V.E#..=.[S8cX..
+    0050 - d4 bc 07 8a ef 46 43 ac-b9 01 16 07 99 93 70 6a   .....FC.......pj
+    0060 - 61 ad 5f 5e 74 bf ac 5e-96 7c a9 f2 41 81 c2 3d   a._^t..^.|..A..=
+    0070 - 4d 2b f3 4f 84 76 43 40-14 65 81 39 a6 f0 ab cd   M+.O.vC@.e.9....
+    0080 - 12 04 9b 3f c4 77 48 0b-0d fa b4 ec 2a a2 37 91   ...?.wH.....*.7.
+    0090 - da a7 a2 2b 15 8e 9c 67-74 04 bb c4 1c 49 59 f4   ...+...gt....IY.
+    00a0 - e9 2a 56 31 a7 50 eb 01-2f b6 f9 e0 ce dd 7f 33   .*V1.P../......3
+    00b0 - 0f 43 80 1f 3c 3f 3a 12-e6 24 3b 6a 6d 99 18 f6   .C..<?:..$;jm...
+
+    Start Time: 1666331071
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+    Extended master secret: yes
+---
+DONE

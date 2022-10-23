@@ -1,0 +1,107 @@
+depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority
+verify return:1
+depth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA
+verify return:1
+depth=0 C = US, ST = Tennessee, O = University of Tennessee, OU = UTK, CN = www.utk.edu
+verify return:1
+CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:C = US, ST = Tennessee, O = University of Tennessee, OU = UTK, CN = www.utk.edu
+   i:C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA
+ 1 s:C = GB, ST = Greater Manchester, L = Salford, O = Comodo CA Limited, CN = AAA Certificate Services
+   i:C = GB, ST = Greater Manchester, L = Salford, O = Comodo CA Limited, CN = AAA Certificate Services
+ 2 s:C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority
+   i:C = GB, ST = Greater Manchester, L = Salford, O = Comodo CA Limited, CN = AAA Certificate Services
+ 3 s:C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA
+   i:C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIGvjCCBaagAwIBAgIRAJjQ0wredNL/dDg7npInKnwwDQYJKoZIhvcNAQELBQAw
+djELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAk1JMRIwEAYDVQQHEwlBbm4gQXJib3Ix
+EjAQBgNVBAoTCUludGVybmV0MjERMA8GA1UECxMISW5Db21tb24xHzAdBgNVBAMT
+FkluQ29tbW9uIFJTQSBTZXJ2ZXIgQ0EwHhcNMjExMjIxMDAwMDAwWhcNMjMwMTIx
+MjM1OTU5WjBnMQswCQYDVQQGEwJVUzESMBAGA1UECBMJVGVubmVzc2VlMSAwHgYD
+VQQKExdVbml2ZXJzaXR5IG9mIFRlbm5lc3NlZTEMMAoGA1UECxMDVVRLMRQwEgYD
+VQQDEwt3d3cudXRrLmVkdTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+ALyi2QevHgSZUfzdW7SziOdUzOC47jFcbSQl347z9RB4YXWLtU8xGSNjQ6d+KHUj
+mJyDIHXdLrGrVIt0efZYLLLS7K58pVIqIx5EcVtImvj/z9hPqqHl81L/Jz7j0U+i
+UT3vHoAKDdCYXbV7Pnq/1bh7loByc6iERLYXqodXBDuxwAw1L44EYuZ7bzNrN1mX
+gwpZyxXH3GuZta/nQaTvbnZ/yX7ALmq2v5vcLa+YKgbhP4BEZMnZZfhb5mlFjTXS
+VFuUGQrkILp42KSLaTk3wjEYEFgvAIqYT7gb+TwjfcKZ9rrN4XA4YpjRU9VpjtYA
+PCF80llLITAZOHNRyU+mFPkCAwEAAaOCA1QwggNQMB8GA1UdIwQYMBaAFB4Fo3eP
+bJbiW4dLprSGrHEADOc4MB0GA1UdDgQWBBSWGtlB1R/h34u95pCkW1+U65OMdzAO
+BgNVHQ8BAf8EBAMCBaAwDAYDVR0TAQH/BAIwADAdBgNVHSUEFjAUBggrBgEFBQcD
+AQYIKwYBBQUHAwIwZwYDVR0gBGAwXjBSBgwrBgEEAa4jAQQDAQEwQjBABggrBgEF
+BQcCARY0aHR0cHM6Ly93d3cuaW5jb21tb24ub3JnL2NlcnQvcmVwb3NpdG9yeS9j
+cHNfc3NsLnBkZjAIBgZngQwBAgIwRAYDVR0fBD0wOzA5oDegNYYzaHR0cDovL2Ny
+bC5pbmNvbW1vbi1yc2Eub3JnL0luQ29tbW9uUlNBU2VydmVyQ0EuY3JsMHUGCCsG
+AQUFBwEBBGkwZzA+BggrBgEFBQcwAoYyaHR0cDovL2NydC51c2VydHJ1c3QuY29t
+L0luQ29tbW9uUlNBU2VydmVyQ0FfMi5jcnQwJQYIKwYBBQUHMAGGGWh0dHA6Ly9v
+Y3NwLnVzZXJ0cnVzdC5jb20wggF9BgorBgEEAdZ5AgQCBIIBbQSCAWkBZwB2AK33
+vvp8/xDIi509nB4+GGq0Zyldz7EMJMqFhjTr3IKKAAABfd6atFgAAAQDAEcwRQIg
+NmgqElcAJO9iz2aJqIJotZX5C49bh6rfZtPbBY9weJ8CIQCFmT61rWPam2iTZv7W
+1KQ5sZ5dZfX2FVkXcEsx4ssVXgB2AHoyjFTYty22IOo44FIe6YQWcDIThU070ivB
+OlejUutSAAABfd6atCEAAAQDAEcwRQIgEEqHK02gZI6TMcefGqY5i/j1BKPTAAxW
+DM7wKHUSF9QCIQD9OPYKZO5JHbe6qyBQubMAAK6urxx0qrPA4DzoqRcHWgB1AOg+
+0No+9QY1MudXKLyJa8kD08vREWvs62nhd31tBr1uAAABfd6as/oAAAQDAEYwRAIg
+YZl6Kjcq/FuknHvTcUGGOX2Ayls5au5698tsCucq51wCIGz26BLifCxSpYmduWfe
+gUwziTpcDTmJv3RAc9tvh+hxMCoGA1UdEQQjMCGCC3d3dy51dGsuZWR1ggkqLnV0
+ay5lZHWCB3V0ay5lZHUwDQYJKoZIhvcNAQELBQADggEBAFiZZ2T3Jv+vUJmyCcf5
+4uZVSnqj8+mIpPp0AK3dHCoR5SRPYk1SYcyMg9yP7RB3O9t6MU5j6ddLXWS2N5we
+GHojjM+9J+z/hmJ1r6RbpMubDl5bAqXsrfAoq9wO6cn3flGLQ9114AHUr5PzK98t
+v4f4+NEnKKJVrE5PYSgfSnAtSYsq3bQSTqmMo9TwKCKTMPRjosDw3mMI2Ok/Dqh4
+4USSy7MX08VvSRSJ+ZjAxjvPP1mwY6RPxpVKz4nXBuma26WLJLthM+XDqXgSsVQO
+jcZmrfpSu3mI2Rcuz7IsVdzhR4iwbfmwOaYm/y6tgwqkjicuoDxB8OLs7xqCrrFO
+MFc=
+-----END CERTIFICATE-----
+subject=C = US, ST = Tennessee, O = University of Tennessee, OU = UTK, CN = www.utk.edu
+
+issuer=C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA
+
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA
+Server Temp Key: ECDH, P-256, 256 bits
+---
+SSL handshake has read 6453 bytes and written 425 bytes
+Verification: OK
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: FD67C188A3EE8ADA66105F17F130EDCC40F676128CCCC402170763D30AD0BCFE
+    Session-ID-ctx: 
+    Master-Key: 30F11AAC9261A32365691FCD15DB66B41B49BFA0CA874AD2C0D561A816F63909E896D5FCF7A7FFD74F421F90531B0064
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 300 (seconds)
+    TLS session ticket:
+    0000 - b3 57 fc 34 40 dc 42 bc-4a 08 0a 86 dd 4c aa b7   .W.4@.B.J....L..
+    0010 - d3 6c 84 8e c5 7a 98 54-60 99 bd 61 5e 4f 25 af   .l...z.T`..a^O%.
+    0020 - 91 b5 55 4e a0 e9 50 e1-bc f9 5d 48 90 90 3c fa   ..UN..P...]H..<.
+    0030 - 91 5f 26 b3 a5 c0 50 fe-b5 de d4 f4 f2 0f 11 9a   ._&...P.........
+    0040 - ad 4b e5 e7 68 04 f6 67-88 eb 2a 12 48 7b 50 3b   .K..h..g..*.H{P;
+    0050 - 19 dd 31 6e b3 2e 43 33-a9 bd 86 fb 8e 60 38 b8   ..1n..C3.....`8.
+    0060 - 91 9d 8e 06 6c 03 e7 8d-5a 9c 99 dd 4c 60 8f 91   ....l...Z...L`..
+    0070 - 32 48 4d 78 55 a0 c2 08-55 06 ce 0e 7d 08 25 d7   2HMxU...U...}.%.
+    0080 - 0f ab d3 55 5d 1d db 24-bc d8 1e a4 37 11 67 ed   ...U]..$....7.g.
+    0090 - 17 19 9d 14 cd 19 26 04-a5 0c 3c 5b 90 17 26 63   ......&...<[..&c
+    00a0 - 85 c1 e8 5e 4f 74 14 67-a1 64 fb 91 f6 92 4d 97   ...^Ot.g.d....M.
+    00b0 - 32 5d a6 09 9e f4 6e 19-61 fb 63 88 9a bd 15 9d   2]....n.a.c.....
+
+    Start Time: 1666331071
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+    Extended master secret: no
+---
+DONE

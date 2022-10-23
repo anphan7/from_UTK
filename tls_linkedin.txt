@@ -1,0 +1,120 @@
+depth=2 C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root CA
+verify return:1
+depth=1 C = US, O = DigiCert Inc, CN = DigiCert SHA2 Secure Server CA
+verify return:1
+depth=0 C = US, ST = California, L = Sunnyvale, O = LinkedIn Corporation, CN = www.linkedin.com
+verify return:1
+CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:C = US, ST = California, L = Sunnyvale, O = LinkedIn Corporation, CN = www.linkedin.com
+   i:C = US, O = DigiCert Inc, CN = DigiCert SHA2 Secure Server CA
+ 1 s:C = US, O = DigiCert Inc, CN = DigiCert SHA2 Secure Server CA
+   i:C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root CA
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIII7jCCB9agAwIBAgIQDxMs/CYMoxzAEkTNehujQTANBgkqhkiG9w0BAQsFADBN
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMScwJQYDVQQDEx5E
+aWdpQ2VydCBTSEEyIFNlY3VyZSBTZXJ2ZXIgQ0EwHhcNMjIwODAzMDAwMDAwWhcN
+MjMwMjAzMjM1OTU5WjBwMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5p
+YTESMBAGA1UEBxMJU3Vubnl2YWxlMR0wGwYDVQQKExRMaW5rZWRJbiBDb3Jwb3Jh
+dGlvbjEZMBcGA1UEAxMQd3d3LmxpbmtlZGluLmNvbTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAK/lmdrXa37bZnD3vCL16nBG2eeA/Cs1ZrKLHbh0kheZ
+VrrKUlTlm1z9GsEZD/th7BvhXRoHqIczyWdQQgyLQZv4L5EzQvzkh5BV9S0WodfV
+cmELdcKmizhKw9QayCFYLeNc2wQfoQ4rNhSwMVdE6qSPmSyGbbvnjOsUDtCjYcb/
+CLd7/bkFIAfMlZoDduJoEgDEWIXHbarVECT2dsAtTyrv8MPuPdsQJX5vhkdhrq/3
+WWJmPS+OPZiQ8m7tT5OlDnNgLSOM47MDkrevwWm0sMTWI1fIGBtFcUaa8gOPFxp3
+kp3VpNFsEJmTRdI2s4hDmFGC8gCIXu67pEUEBIADOh0CAwEAAaOCBaUwggWhMB8G
+A1UdIwQYMBaAFA+AYRyCMWHVLyjnjUY4tCzhxtniMB0GA1UdDgQWBBRQhyBIPxQT
+sbjjyevLSTcQ0dmN+TCCAk4GA1UdEQSCAkUwggJBghB3d3cubGlua2VkaW4uY29t
+ggxsaW5rZWRpbi5jb22CFnJ1bTUucGVyZi5saW5rZWRpbi5jb22CFWV4cDQud3d3
+LmxpbmtlZGluLmNvbYIVZXhwMy53d3cubGlua2VkaW4uY29tghVleHAyLnd3dy5s
+aW5rZWRpbi5jb22CFWV4cDEud3d3LmxpbmtlZGluLmNvbYIWcnVtMi5wZXJmLmxp
+bmtlZGluLmNvbYIWcnVtNC5wZXJmLmxpbmtlZGluLmNvbYIWcnVtNi5wZXJmLmxp
+bmtlZGluLmNvbYIXcnVtMTcucGVyZi5saW5rZWRpbi5jb22CFnJ1bTgucGVyZi5s
+aW5rZWRpbi5jb22CFnJ1bTkucGVyZi5saW5rZWRpbi5jb22CFWFmZC5wZXJmLmxp
+bmtlZGluLmNvbYIXcnVtMTQucGVyZi5saW5rZWRpbi5jb22CF3J1bTE4LnBlcmYu
+bGlua2VkaW4uY29tghdydW0xOS5wZXJmLmxpbmtlZGluLmNvbYIVZXhwNS53d3cu
+bGlua2VkaW4uY29tghlyZWFsdGltZS53d3cubGlua2VkaW4uY29tghNweC5hZHMu
+bGlua2VkaW4uY29tghRweDQuYWRzLmxpbmtlZGluLmNvbYITZGMuYWRzLmxpbmtl
+ZGluLmNvbYIHbG5rZC5pboIUcHguam9icy5saW5rZWRpbi5jb22CEW1pZDQubGlu
+a2VkaW4uY29tghRsYW4uc2RrLmxpbmtlZGluLmNvbTAOBgNVHQ8BAf8EBAMCBaAw
+HQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMIGNBgNVHR8EgYUwgYIwP6A9
+oDuGOWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpY2VydFNIQTJTZWN1cmVT
+ZXJ2ZXJDQS0xLmNybDA/oD2gO4Y5aHR0cDovL2NybDQuZGlnaWNlcnQuY29tL0Rp
+Z2ljZXJ0U0hBMlNlY3VyZVNlcnZlckNBLTEuY3JsMD4GA1UdIAQ3MDUwMwYGZ4EM
+AQICMCkwJwYIKwYBBQUHAgEWG2h0dHA6Ly93d3cuZGlnaWNlcnQuY29tL0NQUzB+
+BggrBgEFBQcBAQRyMHAwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0
+LmNvbTBIBggrBgEFBQcwAoY8aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0U0hBMlNlY3VyZVNlcnZlckNBLTIuY3J0MAkGA1UdEwQCMAAwggGBBgor
+BgEEAdZ5AgQCBIIBcQSCAW0BawB3AOg+0No+9QY1MudXKLyJa8kD08vREWvs62nh
+d31tBr1uAAABgmXsDRsAAAQDAEgwRgIhAOeIsSwLaQnREJGkhy/5KkGdJyYwEYc6
+TRcrndv/t6RBAiEA3oMpE40VCdZjXkvaZo8e27mTIFm9Ej54Tk04UPG9aDQAdwA1
+zxkbv7FsV78PrUxtQsu7ticgJlHqP+Eq76gDwzvWTAAAAYJl7Ax7AAAEAwBIMEYC
+IQD0xglvCKdlYbJ2qsvYN+Oz7v4qYqoYKAOFEKPj0gQJ5AIhAIoz6q6ohnNny6rj
+G5Rhge9YwVkRZdFKTncDNv8eJtHxAHcAs3N3B+GEUPhjhtYFqdwRCUp5LbFnDAuH
+3PADDnk2pZoAAAGCZewMlAAABAMASDBGAiEAoHWHGR0TgI0Ql80QQD6MIHbte1b5
+Qiogl2wK2Gud0gsCIQDg99kDfoMZbDcmeBlyinqZceVDtmh64fBAVgHxamUBoDAN
+BgkqhkiG9w0BAQsFAAOCAQEAAJwWQhHrhvOF+UaUV64T9eA69p92aq0swvasUtex
+cGd3KMfNwlRx+T0W92W/9u8UOpzzB3mvEymL3OAHGqEmrD1OKc+VF5y/qQ2Ko5fQ
+3nSYxtzTsFulFjJmEZ51hTo8i/efAo67aFw3vIH92XfMkQFL+7c4Sd9DuyB8yqLU
+XKH2ZapcX6BTRSGcqNJ+DzDqIZxHIBPiby4HT1N/jnEHKdFtMR8BFxWbXXBt8VRr
+udvbPpdZZ+KlwSWV3zUEnfbg/m9dnw/L6gpNXssAa28WVhFMv0ZG+5qz2Otc9tR9
+/cXt+3nClJ+DjHbIYmDnzCz7dDZgmK2MlArPI2oIqRgepw==
+-----END CERTIFICATE-----
+subject=C = US, ST = California, L = Sunnyvale, O = LinkedIn Corporation, CN = www.linkedin.com
+
+issuer=C = US, O = DigiCert Inc, CN = DigiCert SHA2 Secure Server CA
+
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: ECDH, P-384, 384 bits
+---
+SSL handshake has read 4368 bytes and written 462 bytes
+Verification: OK
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: 81930EE2E542DA6315BD54EDDC28C8E130235928C7C04251EF4BF6C06FD435F3
+    Session-ID-ctx: 
+    Master-Key: DA6F6AA32AFF4675F100CDF01FF05B0EEF8B9527D89E0D0A68DEEACAEFF35E8EC778E7082015466F3071D79C7FD95577
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 36000 (seconds)
+    TLS session ticket:
+    0000 - 00 00 00 00 39 cc 95 78-2b 04 6f 41 83 dd eb fa   ....9..x+.oA....
+    0010 - 19 55 57 5b bd fb 87 8a-bb a7 99 42 c6 d4 56 8a   .UW[.......B..V.
+    0020 - 7c 59 b1 7d b5 57 5f 29-52 37 de 8d 51 d5 11 44   |Y.}.W_)R7..Q..D
+    0030 - fa 53 17 5e d9 b8 4d da-07 4e 8c dd 7f ab 86 5a   .S.^..M..N.....Z
+    0040 - 25 56 ca 79 40 48 d0 bf-59 35 ed 49 b8 21 ef 3c   %V.y@H..Y5.I.!.<
+    0050 - 07 eb 35 7e 11 55 96 5b-3d c7 22 4e 06 e9 45 55   ..5~.U.[=."N..EU
+    0060 - 73 97 e9 3d f1 b6 a3 50-01 c7 dc 65 aa 65 64 e6   s..=...P...e.ed.
+    0070 - c1 d6 2b b8 7f 46 f0 2e-6a 56 3d ac 30 08 02 a8   ..+..F..jV=.0...
+    0080 - 7a 64 b0 6c c0 86 a8 44-62 70 8f 04 97 c2 4d f7   zd.l...Dbp....M.
+    0090 - d4 16 f3 9a 83 75 32 85-e6 62 95 97 9f cc ad e1   .....u2..b......
+    00a0 - 95 1b 4e 32 43 9b 70 70-45 2f 19 31 f3 8f c1 8b   ..N2C.ppE/.1....
+    00b0 - 94 c0 3e 4d 8e f0 99 02-f2 9c a6 b8 b0 2d 2e b4   ..>M.........-..
+    00c0 - 28 0b ba 85 e3 6e 7e 10-9b e0 b4 eb 10 7a ba 72   (....n~......z.r
+    00d0 - ea 3f 1c d7 b9 ef 61 c7-d2 17 61 3f 60 2a 73 e5   .?....a...a?`*s.
+    00e0 - 70 54 45 8a db 58 23 f6-0b d7 12 c6 e4 24 72 ad   pTE..X#......$r.
+    00f0 - 72 f8 71 62 e6 b8 09 cb-64 0b d2 6f ea fa 26 2d   r.qb....d..o..&-
+    0100 - 45 2a a0 3c 1d 8c 66 3c-ef 6d 5a 5c 76 50 6d 74   E*.<..f<.mZ\vPmt
+    0110 - 0c b9 25 f0                                       ..%.
+
+    Start Time: 1666331071
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+    Extended master secret: yes
+---
+DONE
